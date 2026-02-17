@@ -1,65 +1,379 @@
-import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Reporte VibeCoding Bootcamp 2026",
+  description: "Reporte general del bootcamp de desarrollo con IA",
+};
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen bg-[#0a0a0f]">
+      {/* Hero Section */}
+      <section className="relative py-20 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent" />
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-2 rounded-full bg-purple-500/20 text-purple-400 text-sm mb-6 border border-purple-500/30">
+              📊 Reporte Actualizado • 17 Feb 2026
+            </span>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+              <span className="gradient-text">VibeCoding</span>
+              <br />
+              <span className="text-white">Bootcamp 2026</span>
+            </h1>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              De idea a app en 2 semanas • Reporte general de métricas y progreso
+            </p>
+          </div>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+            <StatCard number="651" label="Visitas Web" icon="🌐" />
+            <StatCard number="263" label="Usuarios Únicos" icon="👥" />
+            <StatCard number="82" label="Inscripciones" icon="📝" />
+            <StatCard number="49K" label="Impresiones Twitter" icon="🐦" />
+          </div>
+        </div>
+      </section>
+
+      {/* Funnel Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <SectionTitle title="Funnel de Conversión" emoji="📈" />
+          
+          <div className="glow-card rounded-2xl p-8 mt-8">
+            <div className="space-y-6">
+              <FunnelStep 
+                number="651" 
+                label="Visitas web" 
+                percentage="100%" 
+                color="purple" 
+              />
+              <FunnelStep 
+                number="263" 
+                label="Usuarios únicos" 
+                percentage="40.4%" 
+                color="cyan" 
+              />
+              <FunnelStep 
+                number="82" 
+                label="Inscripciones" 
+                percentage="31.2%" 
+                color="purple" 
+              />
+              <FunnelStep 
+                number="57" 
+                label="Activados" 
+                percentage="69.5%" 
+                color="green" 
+              />
+              <FunnelStep 
+                number="~10" 
+                label="Con progreso" 
+                percentage="12%" 
+                color="amber" 
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Web Analytics Section */}
+      <section className="py-16 px-4 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent">
+        <div className="max-w-6xl mx-auto">
+          <SectionTitle title="Web Analytics" emoji="🌐" subtitle="Microsoft Clarity • 18 Ene - 16 Feb" />
+          
+          <div className="grid md:grid-cols-3 gap-6 mt-8">
+            <MetricCard 
+              title="Engagement" 
+              items={[
+                { label: "Páginas/sesión", value: "3.17" },
+                { label: "Scroll promedio", value: "72.49%" },
+                { label: "Tiempo activo", value: "2:27" },
+              ]} 
+            />
+            <MetricCard 
+              title="Fuentes de Tráfico" 
+              items={[
+                { label: "Twitter", value: "62.6%" },
+                { label: "YouTube", value: "16.1%" },
+                { label: "Google", value: "4.3%" },
+              ]} 
+            />
+            <MetricCard 
+              title="Dispositivos" 
+              items={[
+                { label: "Desktop", value: "62%" },
+                { label: "Mobile", value: "38%" },
+                { label: "Chrome", value: "75%" },
+              ]} 
+            />
+          </div>
+
+          {/* Top Pages */}
+          <div className="glow-card rounded-2xl p-8 mt-8">
+            <h3 className="text-xl font-semibold text-white mb-6">📄 Páginas Más Visitadas</h3>
+            <div className="space-y-4">
+              <PageRow page="Landing (/)" visits={476} percentage={73} />
+              <PageRow page="/doc/session-1" visits={123} percentage={19} />
+              <PageRow page="/doc/session-2" visits={72} percentage={11} />
+              <PageRow page="/doc/session-3" visits={31} percentage={5} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sessions Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <SectionTitle title="Sesiones del Bootcamp" emoji="🎓" />
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+            <SessionCard number={1} title="¿Qué es VibeCoding?" date="9 Feb" status="completed" />
+            <SessionCard number={2} title="Chat con tu Regenmon" date="11 Feb" status="completed" />
+            <SessionCard number={3} title="Stats y Evolución" date="13 Feb" status="completed" />
+            <SessionCard number={4} title="Tu Regenmon Evoluciona" date="16 Feb" status="completed" />
+            <SessionCard number={5} title="Comunidad" date="18 Feb" status="pending" />
+            <SessionCard number={6} title="Demo Day" date="20 Feb" status="pending" />
+          </div>
+        </div>
+      </section>
+
+      {/* Twitter Section */}
+      <section className="py-16 px-4 bg-gradient-to-b from-transparent via-cyan-900/10 to-transparent">
+        <div className="max-w-6xl mx-auto">
+          <SectionTitle title="Métricas Twitter" emoji="🐦" subtitle="49,109 impresiones totales" />
+          
+          <div className="grid md:grid-cols-2 gap-6 mt-8">
+            <div className="glow-card rounded-2xl p-8">
+              <h3 className="text-xl font-semibold text-white mb-6">🏆 Top Comunidades</h3>
+              <div className="space-y-4">
+                <CommunityRow name="ETH Cinco de Mayo" impressions="2,820" />
+                <CommunityRow name="Ethereum México" impressions="1,759" />
+                <CommunityRow name="meximalist" impressions="1,241" />
+                <CommunityRow name="HerDAO México" impressions="1,085" />
+                <CommunityRow name="FlashTalkCoto" impressions="1,163" />
+              </div>
+            </div>
+            
+            <div className="glow-card rounded-2xl p-8">
+              <h3 className="text-xl font-semibold text-white mb-6">👥 Estudiantes Activos (27)</h3>
+              <div className="space-y-3">
+                <StudentRow handle="@S4kurak" posts={4} />
+                <StudentRow handle="@0xW4rw1ck" posts={3} />
+                <StudentRow handle="@0xSofiverse" posts={3} />
+                <StudentRow handle="@Yosoyraymon" posts={2} />
+                <StudentRow handle="@WairaT" posts={2} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Top Performers Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <SectionTitle title="Top Performers" emoji="🏆" subtitle="Estudiantes con mayor progreso" />
+          
+          <div className="glow-card rounded-2xl p-8 mt-8">
+            <div className="space-y-4">
+              <PerformerRow email="anthonyanachury@gmail.com" progress={40} sessions={2} rank={1} />
+              <PerformerRow email="direccion@platohedro.org" progress={40} sessions={2} rank={2} />
+              <PerformerRow email="daniela@doingminds.com" progress={40} sessions={2} rank={3} />
+              <PerformerRow email="lotus.rex@gmail.com" progress={20} sessions={1} rank={4} />
+              <PerformerRow email="danielrubio1234@gmail.com" progress={20} sessions={1} rank={5} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Links Section */}
+      <section className="py-16 px-4 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent">
+        <div className="max-w-6xl mx-auto">
+          <SectionTitle title="Links Importantes" emoji="🔗" />
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+            <LinkCard title="Landing Page" url="https://bootcamp.frutero.club/" icon="🌐" />
+            <LinkCard title="Canal YouTube" url="https://www.youtube.com/@fruterotv" icon="📺" />
+            <LinkCard title="Microsoft Clarity" url="https://clarity.microsoft.com/projects/view/v88xp2n5qs/dashboard" icon="📊" />
+            <LinkCard title="Métricas Twitter" url="https://docs.google.com/spreadsheets/d/1IR9E70JuFQyE-WiCGs4ziZHBaSyQwysdkHtV0JK2UPE/edit" icon="🐦" />
+            <LinkCard title="Lista Estudiantes" url="https://docs.google.com/spreadsheets/d/1BaaSr97v1osRpfvHCe9c5CPNLvd0_MukXGzr-s1FErM/edit" icon="👥" />
+            <LinkCard title="Entregables" url="https://poktapok-iaegp4wrg-fruteroclub.vercel.app/bootcamp/vibecoding" icon="📝" />
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 px-4 border-t border-purple-500/20">
+        <div className="max-w-6xl mx-auto text-center">
+          <p className="text-gray-400">
+            Generado por <span className="text-purple-400">Fruterito 🍓</span>
+          </p>
+          <p className="text-gray-500 text-sm mt-2">
+            VibeCoding Bootcamp • Frutero Club 2026
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </footer>
+    </main>
+  );
+}
+
+// Components
+function StatCard({ number, label, icon }: { number: string; label: string; icon: string }) {
+  return (
+    <div className="stat-card rounded-xl p-6 text-center transition-all hover:scale-105">
+      <span className="text-3xl mb-2 block">{icon}</span>
+      <p className="text-3xl md:text-4xl font-bold gradient-text">{number}</p>
+      <p className="text-gray-400 text-sm mt-1">{label}</p>
     </div>
+  );
+}
+
+function SectionTitle({ title, emoji, subtitle }: { title: string; emoji: string; subtitle?: string }) {
+  return (
+    <div className="text-center">
+      <h2 className="text-3xl md:text-4xl font-bold text-white">
+        {emoji} {title}
+      </h2>
+      {subtitle && <p className="text-gray-400 mt-2">{subtitle}</p>}
+    </div>
+  );
+}
+
+function FunnelStep({ number, label, percentage, color }: { number: string; label: string; percentage: string; color: string }) {
+  const colors: Record<string, string> = {
+    purple: "bg-purple-500",
+    cyan: "bg-cyan-500",
+    green: "bg-green-500",
+    amber: "bg-amber-500",
+  };
+  
+  return (
+    <div className="flex items-center gap-4">
+      <div className="w-24 text-right">
+        <span className="text-2xl font-bold text-white">{number}</span>
+      </div>
+      <div className="flex-1">
+        <div className="h-8 bg-gray-800 rounded-full overflow-hidden">
+          <div 
+            className={`h-full ${colors[color]} rounded-full transition-all`}
+            style={{ width: percentage }}
+          />
+        </div>
+      </div>
+      <div className="w-32">
+        <span className="text-gray-400">{label}</span>
+      </div>
+      <div className="w-16 text-right">
+        <span className="text-purple-400 font-medium">{percentage}</span>
+      </div>
+    </div>
+  );
+}
+
+function MetricCard({ title, items }: { title: string; items: { label: string; value: string }[] }) {
+  return (
+    <div className="glow-card rounded-2xl p-6">
+      <h3 className="text-lg font-semibold text-white mb-4">{title}</h3>
+      <div className="space-y-3">
+        {items.map((item, i) => (
+          <div key={i} className="flex justify-between">
+            <span className="text-gray-400">{item.label}</span>
+            <span className="text-white font-medium">{item.value}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PageRow({ page, visits, percentage }: { page: string; visits: number; percentage: number }) {
+  return (
+    <div className="flex items-center gap-4">
+      <div className="flex-1">
+        <div className="flex justify-between mb-1">
+          <span className="text-gray-300">{page}</span>
+          <span className="text-purple-400">{visits} visitas</span>
+        </div>
+        <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+          <div 
+            className="h-full bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full"
+            style={{ width: `${percentage}%` }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SessionCard({ number, title, date, status }: { number: number; title: string; date: string; status: "completed" | "pending" }) {
+  return (
+    <div className={`glow-card rounded-xl p-6 ${status === "completed" ? "border-green-500/30" : "border-amber-500/30"}`}>
+      <div className="flex items-start justify-between">
+        <div>
+          <span className="text-purple-400 text-sm">Sesión {number}</span>
+          <h3 className="text-white font-semibold mt-1">{title}</h3>
+          <p className="text-gray-500 text-sm mt-2">{date}</p>
+        </div>
+        <span className={`px-3 py-1 rounded-full text-xs ${
+          status === "completed" 
+            ? "bg-green-500/20 text-green-400" 
+            : "bg-amber-500/20 text-amber-400"
+        }`}>
+          {status === "completed" ? "✅ Completada" : "⏳ Pendiente"}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function CommunityRow({ name, impressions }: { name: string; impressions: string }) {
+  return (
+    <div className="flex justify-between items-center py-2 border-b border-gray-800">
+      <span className="text-gray-300">{name}</span>
+      <span className="text-cyan-400 font-medium">{impressions} imp</span>
+    </div>
+  );
+}
+
+function StudentRow({ handle, posts }: { handle: string; posts: number }) {
+  return (
+    <div className="flex justify-between items-center py-2">
+      <span className="text-purple-400">{handle}</span>
+      <span className="text-gray-400">{posts} posts</span>
+    </div>
+  );
+}
+
+function PerformerRow({ email, progress, sessions, rank }: { email: string; progress: number; sessions: number; rank: number }) {
+  const medals = ["🥇", "🥈", "🥉", "4️⃣", "5️⃣"];
+  return (
+    <div className="flex items-center gap-4 py-3 border-b border-gray-800">
+      <span className="text-2xl">{medals[rank - 1]}</span>
+      <div className="flex-1">
+        <p className="text-gray-300 truncate">{email}</p>
+      </div>
+      <div className="text-right">
+        <span className="text-purple-400 font-bold">{progress}%</span>
+        <span className="text-gray-500 text-sm ml-2">({sessions} sesiones)</span>
+      </div>
+    </div>
+  );
+}
+
+function LinkCard({ title, url, icon }: { title: string; url: string; icon: string }) {
+  return (
+    <a 
+      href={url} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="glow-card rounded-xl p-4 flex items-center gap-4 hover:border-purple-500 transition-all"
+    >
+      <span className="text-2xl">{icon}</span>
+      <div>
+        <p className="text-white font-medium">{title}</p>
+        <p className="text-gray-500 text-xs truncate max-w-[200px]">{url}</p>
+      </div>
+    </a>
   );
 }
