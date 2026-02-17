@@ -27,7 +27,7 @@ const poaps = [
     dropId: "225994",
     status: "minted",
     collectors: 24,
-    image: "https://assets.poap.xyz/vive--bootcamp--s1-2026-logo-1739153925716.png"
+    image: "https://assets.poap.xyz/b0329e07-b6e6-42a1-af4f-0b403d08ee18.png"
   },
   {
     session: 2,
@@ -38,7 +38,7 @@ const poaps = [
     dropId: "226008",
     status: "minted",
     collectors: 21,
-    image: "https://assets.poap.xyz/vibe-coding-bootcamp-s2-2026-logo-1739328051948.png"
+    image: "https://assets.poap.xyz/adfca192-4589-4039-bbc5-bbdb1fa262c2.png"
   },
   {
     session: 3,
@@ -49,7 +49,7 @@ const poaps = [
     dropId: "226087",
     status: "minted",
     collectors: 18,
-    image: "https://assets.poap.xyz/vibe-coding-bootcamp-s3-2026-logo-1739500810392.png"
+    image: "https://assets.poap.xyz/76686f54-2af9-4023-bbf0-7eca26301ed5.png"
   },
   {
     session: 4,
@@ -60,7 +60,7 @@ const poaps = [
     dropId: "226165",
     status: "minted",
     collectors: 24,
-    image: "https://assets.poap.xyz/vibe-coding-bootcamp-s4-2026-logo-1739758388376.png"
+    image: "https://assets.poap.xyz/f37b79d6-3497-4788-8895-3e793e87b3f4.png"
   },
   {
     session: 5,
