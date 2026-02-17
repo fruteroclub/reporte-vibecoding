@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Particles from "@/components/Particles";
 
 export const metadata: Metadata = {
   title: "Reporte VibeCoding Bootcamp 2026",
-  description: "Reporte general del bootcamp de desarrollo con IA - Frutero Club",
+  description: "Reporte general de métricas y progreso del bootcamp de desarrollo con IA",
 };
 
 export default function RootLayout({
@@ -14,7 +15,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className="antialiased">
-        {children}
+        <Particles />
+        <div className="relative z-10">
+          {children}
+        </div>
       </body>
     </html>
   );

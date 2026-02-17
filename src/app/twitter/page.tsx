@@ -1,169 +1,206 @@
-import Link from "next/link";
-import { ArrowLeft, Twitter, Trophy, Users, Video, TrendingUp, ExternalLink } from "lucide-react";
+import { Metadata } from "next";
+import { 
+  Twitter, Trophy, Users, TrendingUp, Heart, 
+  MessageCircle, Eye, ExternalLink, Video
+} from "lucide-react";
+import { BackLink, PageHeader, SectionTitle, DataTable } from "@/components/SharedComponents";
+
+export const metadata: Metadata = {
+  title: "Métricas Twitter | Reporte VibeCoding",
+  description: "Análisis completo de métricas de Twitter",
+};
 
 export default function TwitterPage() {
   return (
-    <main className="min-h-screen bg-[#0a0a0f] py-12 px-4">
+    <main className="min-h-screen py-8 md:py-12 px-4">
       <div className="max-w-6xl mx-auto">
-        <Link href="/" className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 mb-8">
-          <ArrowLeft className="w-4 h-4" /> Volver al Dashboard
-        </Link>
+        <BackLink />
         
-        <div className="flex items-center gap-4 mb-8">
-          <Twitter className="w-12 h-12 text-cyan-400" />
-          <div>
-            <h1 className="text-4xl font-bold text-white">Métricas Twitter</h1>
-            <p className="text-gray-400">Análisis completo de redes sociales</p>
-          </div>
+        <PageHeader 
+          title="Métricas Twitter" 
+          subtitle="@fruteroclub • 49,109 impresiones totales"
+          icon={<Twitter className="w-8 h-8 md:w-10 md:h-10 text-orange-500" />}
+        />
+
+        {/* Overview Stats */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-8 md:mb-12">
+          <StatBox number="49,109" label="Impresiones" icon={<Eye className="w-5 h-5 text-orange-500" />} />
+          <StatBox number="26" label="Posts @fruteroclub" icon={<Twitter className="w-5 h-5 text-orange-500" />} />
+          <StatBox number="52" label="Menciones Externas" icon={<MessageCircle className="w-5 h-5 text-orange-500" />} />
+          <StatBox number="27" label="Estudiantes Activos" icon={<Users className="w-5 h-5 text-orange-500" />} />
         </div>
 
-        {/* Main Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          <StatCard label="Impresiones Totales" value="49,109" />
-          <StatCard label="Posts @fruteroclub" value="26" />
-          <StatCard label="Menciones Externas" value="52" />
-          <StatCard label="Estudiantes Postearon" value="27" />
+        {/* @fruteroclub Section */}
+        <section className="mb-8 md:mb-12">
+          <SectionTitle title="Posts de @fruteroclub" icon={<Twitter className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} subtitle="26 posts • 14,688 impresiones" />
+          
+          <div className="bg-[#141414] border border-[#262626] rounded-xl md:rounded-2xl p-4 md:p-6 mt-6">
+            <h4 className="text-white font-semibold mb-4">Top 10 Posts por Impresiones</h4>
+            <div className="space-y-3">
+              <TopPostRow rank={1} impressions="2,505" likes={44} comments={7} />
+              <TopPostRow rank={2} impressions="2,237" likes={25} comments={1} />
+              <TopPostRow rank={3} impressions="2,183" likes={21} comments={2} />
+              <TopPostRow rank={4} impressions="1,023" likes={6} comments={1} />
+              <TopPostRow rank={5} impressions="988" likes={12} comments={1} />
+            </div>
+            
+            <div className="mt-6 pt-4 border-t border-[#262626]">
+              <h4 className="text-white font-semibold mb-3">Métricas Agregadas</h4>
+              <div className="grid grid-cols-3 gap-4 text-center">
+                <div>
+                  <p className="text-2xl font-bold text-orange-500">14,688</p>
+                  <p className="text-gray-400 text-sm">Impresiones</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-orange-500">319</p>
+                  <p className="text-gray-400 text-sm">Likes</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-orange-500">2.17%</p>
+                  <p className="text-gray-400 text-sm">Engagement</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Communities Section */}
+        <section className="mb-8 md:mb-12">
+          <SectionTitle title="Top Comunidades" icon={<Trophy className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} subtitle="Menciones por comunidad" />
+          
+          <div className="bg-[#141414] border border-[#262626] rounded-xl md:rounded-2xl p-4 md:p-6 mt-6">
+            <DataTable 
+              headers={["Comunidad", "Posts", "Impresiones", "Likes"]}
+              rows={[
+                [<span key="1" className="text-orange-500 font-medium">ETH Cinco de Mayo</span>, "3", "2,820", "42"],
+                ["Ethereum México", "2", "1,759", "40"],
+                ["meximalist", "1", "1,241", "23"],
+                ["FlashTalkCoto", "1", "1,163", "13"],
+                ["HerDAO México", "1", "1,085", "23"],
+                ["Wendy Lopez", "2", "1,637", "39"],
+                ["Raymon", "2", "1,444", "58"],
+                ["Waira", "2", "1,324", "52"],
+                ["Espacio Cripto", "1", "738", "23"],
+                ["Cartagena Onchain", "1", "579", "16"],
+              ]}
+            />
+          </div>
+        </section>
+
+        {/* Active Students Section */}
+        <section className="mb-8 md:mb-12">
+          <SectionTitle title="Estudiantes Más Activos" icon={<Users className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} subtitle="27 estudiantes postearon" />
+          
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6 mt-6">
+            <div className="bg-[#141414] border border-[#262626] rounded-xl md:rounded-2xl p-4 md:p-6">
+              <h4 className="text-white font-semibold mb-4">Top por Cantidad de Posts</h4>
+              <div className="space-y-3">
+                <StudentStatRow handle="@S4kurak" posts={4} impressions="1,249" />
+                <StudentStatRow handle="@0xW4rw1ck" posts={3} impressions="894" />
+                <StudentStatRow handle="@0xSofiverse" posts={3} impressions="793" />
+                <StudentStatRow handle="@Yosoyraymon" posts={2} impressions="1,444" />
+                <StudentStatRow handle="@WairaT" posts={2} impressions="1,324" />
+              </div>
+            </div>
+            
+            <div className="bg-[#141414] border border-[#262626] rounded-xl md:rounded-2xl p-4 md:p-6">
+              <h4 className="text-white font-semibold mb-4">Top por Impresiones</h4>
+              <div className="space-y-3">
+                <StudentStatRow handle="@Yosoyraymon" posts={2} impressions="1,444" />
+                <StudentStatRow handle="@WairaT" posts={2} impressions="1,324" />
+                <StudentStatRow handle="@S4kurak" posts={4} impressions="1,249" />
+                <StudentStatRow handle="@JustEmily" posts={2} impressions="959" />
+                <StudentStatRow handle="@0xW4rw1ck" posts={3} impressions="894" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Videos Section */}
+        <section className="mb-8 md:mb-12">
+          <SectionTitle title="Videos" icon={<Video className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} subtitle="3 videos • 5,118 views" />
+          
+          <div className="bg-[#141414] border border-[#262626] rounded-xl md:rounded-2xl p-4 md:p-6 mt-6">
+            <div className="grid grid-cols-3 gap-4 text-center">
+              <div>
+                <p className="text-3xl font-bold text-orange-500">3</p>
+                <p className="text-gray-400 text-sm">Videos</p>
+              </div>
+              <div>
+                <p className="text-3xl font-bold text-orange-500">5,118</p>
+                <p className="text-gray-400 text-sm">Views Totales</p>
+              </div>
+              <div>
+                <p className="text-3xl font-bold text-orange-500">1,706</p>
+                <p className="text-gray-400 text-sm">Promedio/Video</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* External Links */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="https://docs.google.com/spreadsheets/d/1IR9E70JuFQyE-WiCGs4ziZHBaSyQwysdkHtV0JK2UPE/edit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-medium transition-colors"
+          >
+            <ExternalLink className="w-4 h-4" />
+            Ver Datos Completos
+          </a>
+          <a 
+            href="https://twitter.com/fruteroclub"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 bg-[#141414] border border-[#333] hover:border-orange-500/50 text-white px-6 py-3 rounded-full font-medium transition-colors"
+          >
+            <Twitter className="w-4 h-4" />
+            @fruteroclub
+          </a>
         </div>
-
-        {/* Top Posts */}
-        <section className="glow-card rounded-2xl p-8 mb-8">
-          <div className="flex items-center gap-3 mb-6">
-            <TrendingUp className="w-6 h-6 text-purple-400" />
-            <h2 className="text-2xl font-bold text-white">Top Posts @fruteroclub</h2>
-          </div>
-          <div className="space-y-4">
-            <PostRow impressions={2505} likes={44} comments={7} url="https://x.com/fruteroclub/status/2013346256668529076" />
-            <PostRow impressions={2237} likes={25} comments={1} url="https://x.com/fruteroclub/status/2018776545846870034" />
-            <PostRow impressions={2183} likes={21} comments={2} url="https://x.com/fruteroclub/status/2019063396067377657" />
-            <PostRow impressions={1023} likes={6} comments={1} url="https://x.com/fruteroclub/status/2019892436227514626" />
-            <PostRow impressions={988} likes={12} comments={1} url="https://x.com/fruteroclub/status/2019561684931633325" />
-            <PostRow impressions={950} likes={17} comments={1} url="https://x.com/fruteroclub/status/2019425783325020161" />
-            <PostRow impressions={656} likes={23} comments={6} url="https://x.com/fruteroclub/status/2022071248067661951" />
-          </div>
-        </section>
-
-        {/* Communities */}
-        <section className="glow-card rounded-2xl p-8 mb-8">
-          <div className="flex items-center gap-3 mb-6">
-            <Trophy className="w-6 h-6 text-amber-400" />
-            <h2 className="text-2xl font-bold text-white">Comunidades que Amplificaron</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-4">
-            <CommunityCard name="ETH Cinco de Mayo" handle="@ETHCincoDeMayo" impressions={2820} posts={3} />
-            <CommunityCard name="Ethereum México" handle="@ethereum_mexico" impressions={1759} posts={2} />
-            <CommunityCard name="meximalist" handle="@meximalist" impressions={1241} posts={1} />
-            <CommunityCard name="FlashTalkCoto" handle="@FlashTalkCoto" impressions={1163} posts={1} />
-            <CommunityCard name="HerDAO México" handle="@HerDao_Mexico" impressions={1085} posts={1} />
-            <CommunityCard name="Ethereum MTY" handle="@eth_mty" impressions={989} posts={1} />
-            <CommunityCard name="Espacio Cripto" handle="@EspacioCripto" impressions={738} posts={1} />
-            <CommunityCard name="Cartagena Onchain" handle="@ctg_onchain" impressions={579} posts={1} />
-          </div>
-        </section>
-
-        {/* Students */}
-        <section className="glow-card rounded-2xl p-8 mb-8">
-          <div className="flex items-center gap-3 mb-6">
-            <Users className="w-6 h-6 text-purple-400" />
-            <h2 className="text-2xl font-bold text-white">Estudiantes que Postearon (27)</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-4">
-            <StudentCard handle="@S4kurak" posts={4} engagement="Alto" />
-            <StudentCard handle="@0xW4rw1ck" posts={3} engagement="Medio" />
-            <StudentCard handle="@0xSofiverse" posts={3} engagement="Medio" />
-            <StudentCard handle="@Yosoyraymon" posts={2} engagement="Alto" />
-            <StudentCard handle="@WairaT" posts={2} engagement="Alto" />
-            <StudentCard handle="@Wenlopezn" posts={2} engagement="Alto" />
-            <StudentCard handle="@soylaloreto" posts={2} engagement="Medio" />
-            <StudentCard handle="@0xSoulChain" posts={2} engagement="Medio" />
-            <StudentCard handle="@JustEmilyr" posts={2} engagement="Medio" />
-            <StudentCard handle="@eldudedelcafe" posts={2} engagement="Medio" />
-            <StudentCard handle="@NayeliChZ_zehn" posts={2} engagement="Bajo" />
-            <StudentCard handle="@monitalan" posts={1} engagement="Alto" />
-            <StudentCard handle="@junesandrea1717" posts={1} engagement="Alto" />
-            <StudentCard handle="@elizabeths_14" posts={1} engagement="Alto" />
-            <StudentCard handle="@Kalipssoh" posts={1} engagement="Bajo" />
-          </div>
-        </section>
-
-        {/* Videos */}
-        <section className="glow-card rounded-2xl p-8">
-          <div className="flex items-center gap-3 mb-6">
-            <Video className="w-6 h-6 text-cyan-400" />
-            <h2 className="text-2xl font-bold text-white">Videos (5,118 views totales)</h2>
-          </div>
-          <div className="space-y-4">
-            <VideoRow views={2473} likes={45} comments={4} url="https://x.com/fruteroclub/status/2020294987854807367" />
-            <VideoRow views={2378} likes={30} comments={1} url="https://x.com/fruteroclub/status/2020996571446509806" />
-            <VideoRow views={267} likes={12} comments={0} note="Space del bootcamp" url="https://x.com/fruteroclub/status/2021697943804301575" />
-          </div>
-        </section>
       </div>
     </main>
   );
 }
 
-function StatCard({ label, value }: { label: string; value: string }) {
+function StatBox({ number, label, icon }: { number: string; label: string; icon: React.ReactNode }) {
   return (
-    <div className="stat-card rounded-xl p-6 text-center">
-      <p className="text-3xl font-bold gradient-text">{value}</p>
-      <p className="text-gray-400 text-sm">{label}</p>
+    <div className="bg-[#141414] border border-[#262626] rounded-xl p-4 text-center">
+      <div className="flex justify-center mb-2">{icon}</div>
+      <p className="text-2xl md:text-3xl font-bold text-orange-500">{number}</p>
+      <p className="text-gray-400 text-xs md:text-sm mt-1">{label}</p>
     </div>
   );
 }
 
-function PostRow({ impressions, likes, comments, url }: { impressions: number; likes: number; comments: number; url: string }) {
+function TopPostRow({ rank, impressions, likes, comments }: { rank: number; impressions: string; likes: number; comments: number }) {
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between py-3 border-b border-gray-800 hover:bg-gray-800/50 px-2 rounded transition-colors">
-      <div className="flex items-center gap-6">
-        <span className="text-white font-bold">{impressions.toLocaleString()} imp</span>
-        <span className="text-purple-400">{likes} likes</span>
-        <span className="text-gray-400">{comments} comentarios</span>
-      </div>
-      <ExternalLink className="w-4 h-4 text-gray-500" />
-    </a>
-  );
-}
-
-function CommunityCard({ name, handle, impressions, posts }: { name: string; handle: string; impressions: number; posts: number }) {
-  return (
-    <div className="p-4 bg-gray-800/50 rounded-xl border border-gray-700">
-      <h3 className="text-white font-semibold">{name}</h3>
-      <p className="text-cyan-400 text-sm">{handle}</p>
-      <div className="flex justify-between mt-3">
-        <span className="text-gray-400">{impressions.toLocaleString()} imp</span>
-        <span className="text-gray-500">{posts} posts</span>
+    <div className="flex items-center gap-3 py-2 border-b border-[#262626] last:border-0">
+      <span className="text-orange-500 font-bold w-6">#{rank}</span>
+      <div className="flex-1 flex flex-wrap gap-3 text-sm">
+        <span className="flex items-center gap-1 text-gray-400">
+          <Eye className="w-3 h-3" /> {impressions}
+        </span>
+        <span className="flex items-center gap-1 text-gray-400">
+          <Heart className="w-3 h-3" /> {likes}
+        </span>
+        <span className="flex items-center gap-1 text-gray-400">
+          <MessageCircle className="w-3 h-3" /> {comments}
+        </span>
       </div>
     </div>
   );
 }
 
-function StudentCard({ handle, posts, engagement }: { handle: string; posts: number; engagement: string }) {
-  const colors = {
-    Alto: "text-green-400",
-    Medio: "text-amber-400",
-    Bajo: "text-gray-400",
-  };
+function StudentStatRow({ handle, posts, impressions }: { handle: string; posts: number; impressions: string }) {
   return (
-    <div className="p-3 bg-gray-800/50 rounded-lg flex justify-between items-center">
-      <span className="text-purple-400">{handle}</span>
-      <div className="text-right">
-        <span className="text-white">{posts} posts</span>
-        <span className={`text-xs ml-2 ${colors[engagement as keyof typeof colors]}`}>{engagement}</span>
+    <div className="flex items-center justify-between py-2 border-b border-[#262626] last:border-0">
+      <span className="text-orange-500">{handle}</span>
+      <div className="flex gap-4 text-sm">
+        <span className="text-gray-400">{posts} posts</span>
+        <span className="text-white font-medium">{impressions} imp</span>
       </div>
     </div>
-  );
-}
-
-function VideoRow({ views, likes, comments, url, note }: { views: number; likes: number; comments: number; url: string; note?: string }) {
-  return (
-    <a href={url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between py-3 border-b border-gray-800 hover:bg-gray-800/50 px-2 rounded transition-colors">
-      <div className="flex items-center gap-6">
-        <span className="text-white font-bold">{views.toLocaleString()} views</span>
-        <span className="text-purple-400">{likes} likes</span>
-        <span className="text-gray-400">{comments} comentarios</span>
-        {note && <span className="text-cyan-400 text-sm">({note})</span>}
-      </div>
-      <ExternalLink className="w-4 h-4 text-gray-500" />
-    </a>
   );
 }
