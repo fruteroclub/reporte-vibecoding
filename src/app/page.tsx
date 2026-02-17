@@ -3,7 +3,7 @@ import Link from "next/link";
 import { 
   Globe, Users, FileText, Twitter, TrendingUp, BarChart3, 
   Monitor, Link2, Youtube, PieChart, Trophy,
-  GraduationCap, Target, Activity, Medal
+  GraduationCap, Target, Activity, Medal, Award, CheckCircle, Clock, ExternalLink
 } from "lucide-react";
 import {
   StatCard, SectionTitle, SectionTitleWithArrow, FunnelStep,
@@ -15,6 +15,76 @@ export const metadata: Metadata = {
   title: "Reporte VibeCoding Bootcamp 2026",
   description: "Reporte general del bootcamp de desarrollo con IA",
 };
+
+// POAPs data
+const poaps = [
+  {
+    session: 1,
+    name: "Vibe Bootcamp S1",
+    date: "Feb 9, 2026",
+    description: "Construye tu primera app con IA en 2 semanas. Let's Fruta Build!",
+    tokenId: "7563405",
+    dropId: "225994",
+    status: "minted",
+    collectors: 24,
+    image: "https://assets.poap.xyz/vive--bootcamp--s1-2026-logo-1739153925716.png"
+  },
+  {
+    session: 2,
+    name: "Vibe Coding Bootcamp S2",
+    date: "Feb 11, 2026",
+    description: "Segunda sesión, primer producto real. Learning by building, always!",
+    tokenId: "7563753",
+    dropId: "226008",
+    status: "minted",
+    collectors: 21,
+    image: "https://assets.poap.xyz/vibe-coding-bootcamp-s2-2026-logo-1739328051948.png"
+  },
+  {
+    session: 3,
+    name: "Vibe Coding Bootcamp S3",
+    date: "Feb 13, 2026",
+    description: "Los Regenmons evolucionaron. From app to system.",
+    tokenId: "7564849",
+    dropId: "226087",
+    status: "minted",
+    collectors: 18,
+    image: "https://assets.poap.xyz/vibe-coding-bootcamp-s3-2026-logo-1739500810392.png"
+  },
+  {
+    session: 4,
+    name: "Vibe Coding Bootcamp S4",
+    date: "Feb 16, 2026",
+    description: "Los Regenmons se convirtieron en verdaderos compañeros digitales.",
+    tokenId: "7565914",
+    dropId: "226165",
+    status: "minted",
+    collectors: 24,
+    image: "https://assets.poap.xyz/vibe-coding-bootcamp-s4-2026-logo-1739758388376.png"
+  },
+  {
+    session: 5,
+    name: "Vibe Coding Bootcamp S5",
+    date: "Feb 18, 2026",
+    description: "Comunidad - Próximamente",
+    tokenId: null,
+    dropId: null,
+    status: "pending",
+    collectors: 0,
+    image: null
+  },
+  {
+    session: 6,
+    name: "Vibe Coding Bootcamp S6",
+    date: "Feb 20, 2026",
+    description: "Demo Day - Próximamente",
+    tokenId: null,
+    dropId: null,
+    status: "pending",
+    collectors: 0,
+    image: null
+  },
+];
 
 export default function Home() {
   return (
@@ -44,6 +114,23 @@ export default function Home() {
             <StatCard number="263" label="Usuarios Únicos" icon={<Users className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/analytics" />
             <StatCard number="82" label="Inscripciones" icon={<FileText className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/sessions" />
             <StatCard number="49K" label="Impresiones Twitter" icon={<Twitter className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/twitter" />
+          </div>
+        </div>
+      </section>
+
+      {/* POAPs Section - NEW */}
+      <section className="py-12 md:py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <SectionTitle 
+            title="POAPs Emitidos" 
+            icon={<Award className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} 
+            subtitle="Proof of Attendance Protocol • Coleccionables on-chain"
+          />
+          
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 mt-6 md:mt-8">
+            {poaps.map((poap) => (
+              <PoapCard key={poap.session} poap={poap} />
+            ))}
           </div>
         </div>
       </section>
@@ -214,5 +301,64 @@ export default function Home() {
         </div>
       </footer>
     </main>
+  );
+}
+
+// POAP Card Component
+function PoapCard({ poap }: { poap: typeof poaps[0] }) {
+  const isPending = poap.status === "pending";
+  
+  const content = (
+    <div className={"bg-[#141414] border rounded-xl p-3 md:p-4 text-center transition-all group " + 
+      (isPending ? "border-orange-500/30" : "border-[#262626] hover:border-orange-500/50")}>
+      
+      {/* POAP Image */}
+      <div className="relative w-16 h-16 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+        {poap.image ? (
+          <img 
+            src={poap.image} 
+            alt={poap.name}
+            className="w-full h-full rounded-full object-cover"
+          />
+        ) : (
+          <div className="w-full h-full rounded-full bg-[#1a1a1a] border-2 border-dashed border-orange-500/30 flex items-center justify-center">
+            <Clock className="w-6 h-6 text-orange-500/50" />
+          </div>
+        )}
+        
+        {/* Status Badge */}
+        <div className={"absolute -bottom-1 -right-1 w-5 h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center " +
+          (isPending ? "bg-orange-500/20 border border-orange-500/50" : "bg-green-500/20 border border-green-500/50")}>
+          {isPending ? (
+            <Clock className="w-3 h-3 text-orange-500" />
+          ) : (
+            <CheckCircle className="w-3 h-3 text-green-500" />
+          )}
+        </div>
+      </div>
+      
+      {/* Info */}
+      <p className="text-orange-500 text-xs font-medium">S{poap.session}</p>
+      <p className="text-white text-xs md:text-sm font-medium truncate mt-1">{poap.name.replace("Vibe Coding Bootcamp ", "").replace("Vibe Bootcamp ", "")}</p>
+      <p className="text-gray-500 text-xs mt-1">{poap.date.split(", ")[0]}</p>
+      
+      {!isPending && (
+        <p className="text-gray-400 text-xs mt-1">{poap.collectors} collectors</p>
+      )}
+    </div>
+  );
+  
+  if (isPending) {
+    return content;
+  }
+  
+  return (
+    <a 
+      href={"https://collectors.poap.xyz/token/" + poap.tokenId}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {content}
+    </a>
   );
 }
