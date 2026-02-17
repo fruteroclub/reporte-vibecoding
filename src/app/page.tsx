@@ -49,7 +49,7 @@ const poaps = [
     dropId: "226087",
     status: "minted",
     collectors: 18,
-    image: "https://assets.poap.xyz/76686f54-2af9-4023-bbf0-7eca26301ed5.png"
+    image: "https://assets.poap.xyz/0bc67172-085f-4590-9004-95e1ab97dc10.png"
   },
   {
     session: 4,
@@ -304,16 +304,15 @@ export default function Home() {
   );
 }
 
-// POAP Card Component
+// POAP Card Component - No background
 function PoapCard({ poap }: { poap: typeof poaps[0] }) {
   const isPending = poap.status === "pending";
   
   const content = (
-    <div className={"bg-[#141414] border rounded-xl p-3 md:p-4 text-center transition-all group " + 
-      (isPending ? "border-orange-500/30" : "border-[#262626] hover:border-orange-500/50")}>
+    <div className="text-center transition-all group p-2">
       
       {/* POAP Image */}
-      <div className="relative w-16 h-16 md:w-20 md:h-20 mx-auto mb-2 md:mb-3">
+      <div className="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-2 md:mb-3">
         {poap.image ? (
           <img 
             src={poap.image} 
@@ -322,13 +321,13 @@ function PoapCard({ poap }: { poap: typeof poaps[0] }) {
           />
         ) : (
           <div className="w-full h-full rounded-full bg-[#1a1a1a] border-2 border-dashed border-orange-500/30 flex items-center justify-center">
-            <Clock className="w-6 h-6 text-orange-500/50" />
+            <Clock className="w-8 h-8 text-orange-500/50" />
           </div>
         )}
         
         {/* Status Badge */}
-        <div className={"absolute -bottom-1 -right-1 w-5 h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center " +
-          (isPending ? "bg-orange-500/20 border border-orange-500/50" : "bg-green-500/20 border border-green-500/50")}>
+        <div className={"absolute -bottom-1 -right-1 w-6 h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center " +
+          (isPending ? "bg-[#0a0a0a] border-2 border-orange-500" : "bg-[#0a0a0a] border-2 border-green-500")}>
           {isPending ? (
             <Clock className="w-3 h-3 text-orange-500" />
           ) : (
@@ -339,7 +338,6 @@ function PoapCard({ poap }: { poap: typeof poaps[0] }) {
       
       {/* Info */}
       <p className="text-orange-500 text-xs font-medium">S{poap.session}</p>
-      <p className="text-white text-xs md:text-sm font-medium truncate mt-1">{poap.name.replace("Vibe Coding Bootcamp ", "").replace("Vibe Bootcamp ", "")}</p>
       <p className="text-gray-500 text-xs mt-1">{poap.date.split(", ")[0]}</p>
       
       {!isPending && (
@@ -357,8 +355,10 @@ function PoapCard({ poap }: { poap: typeof poaps[0] }) {
       href={"https://collectors.poap.xyz/token/" + poap.tokenId}
       target="_blank"
       rel="noopener noreferrer"
+      className="hover:scale-105 transition-transform"
     >
       {content}
     </a>
   );
 }
+
