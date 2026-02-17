@@ -1,9 +1,10 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { 
   Globe, Users, FileText, Twitter, TrendingUp, BarChart3, 
-  Monitor, Smartphone, Chrome, Calendar, CheckCircle, Clock,
+  Monitor, Calendar, CheckCircle, Clock,
   Link2, Youtube, PieChart, Trophy, Medal, ExternalLink,
-  GraduationCap, Target, Zap, Activity, Eye, MousePointer
+  GraduationCap, Target, Activity, Eye, ChevronRight
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -60,117 +61,105 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Web Analytics Section */}
-      <section className="py-16 px-4 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent">
-        <div className="max-w-6xl mx-auto">
-          <SectionTitle 
-            title="Web Analytics" 
-            icon={<Globe className="w-8 h-8 text-cyan-400" />} 
-            subtitle="Microsoft Clarity • 18 Ene - 16 Feb" 
-          />
-          
-          <div className="grid md:grid-cols-3 gap-6 mt-8">
-            <MetricCard 
-              title="Engagement" 
-              icon={<Activity className="w-5 h-5 text-purple-400" />}
-              items={[
-                { label: "Páginas/sesión", value: "3.17" },
-                { label: "Scroll promedio", value: "72.49%" },
-                { label: "Tiempo activo", value: "2:27" },
-              ]} 
+      {/* Web Analytics Section - Clickable */}
+      <Link href="/analytics" className="block">
+        <section className="py-16 px-4 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent hover:via-purple-900/20 transition-colors cursor-pointer">
+          <div className="max-w-6xl mx-auto">
+            <SectionTitleWithArrow 
+              title="Web Analytics" 
+              icon={<Globe className="w-8 h-8 text-cyan-400" />} 
+              subtitle="Microsoft Clarity • Click para ver detalles" 
             />
-            <MetricCard 
-              title="Fuentes de Tráfico" 
-              icon={<Target className="w-5 h-5 text-cyan-400" />}
-              items={[
-                { label: "Twitter", value: "62.6%" },
-                { label: "YouTube", value: "16.1%" },
-                { label: "Google", value: "4.3%" },
-              ]} 
-            />
-            <MetricCard 
-              title="Dispositivos" 
-              icon={<Monitor className="w-5 h-5 text-purple-400" />}
-              items={[
-                { label: "Desktop", value: "62%" },
-                { label: "Mobile", value: "38%" },
-                { label: "Chrome", value: "75%" },
-              ]} 
-            />
-          </div>
-
-          {/* Top Pages */}
-          <div className="glow-card rounded-2xl p-8 mt-8">
-            <div className="flex items-center gap-3 mb-6">
-              <Eye className="w-6 h-6 text-purple-400" />
-              <h3 className="text-xl font-semibold text-white">Páginas Más Visitadas</h3>
-            </div>
-            <div className="space-y-4">
-              <PageRow page="Landing (/)" visits={476} percentage={73} />
-              <PageRow page="/doc/session-1" visits={123} percentage={19} />
-              <PageRow page="/doc/session-2" visits={72} percentage={11} />
-              <PageRow page="/doc/session-3" visits={31} percentage={5} />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Sessions Section */}
-      <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <SectionTitle title="Sesiones del Bootcamp" icon={<GraduationCap className="w-8 h-8 text-purple-400" />} />
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-            <SessionCard number={1} title="¿Qué es VibeCoding?" date="9 Feb" status="completed" />
-            <SessionCard number={2} title="Chat con tu Regenmon" date="11 Feb" status="completed" />
-            <SessionCard number={3} title="Stats y Evolución" date="13 Feb" status="completed" />
-            <SessionCard number={4} title="Tu Regenmon Evoluciona" date="16 Feb" status="completed" />
-            <SessionCard number={5} title="Comunidad" date="18 Feb" status="pending" />
-            <SessionCard number={6} title="Demo Day" date="20 Feb" status="pending" />
-          </div>
-        </div>
-      </section>
-
-      {/* Twitter Section */}
-      <section className="py-16 px-4 bg-gradient-to-b from-transparent via-cyan-900/10 to-transparent">
-        <div className="max-w-6xl mx-auto">
-          <SectionTitle 
-            title="Métricas Twitter" 
-            icon={<Twitter className="w-8 h-8 text-cyan-400" />} 
-            subtitle="49,109 impresiones totales" 
-          />
-          
-          <div className="grid md:grid-cols-2 gap-6 mt-8">
-            <div className="glow-card rounded-2xl p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <Trophy className="w-6 h-6 text-amber-400" />
-                <h3 className="text-xl font-semibold text-white">Top Comunidades</h3>
-              </div>
-              <div className="space-y-4">
-                <CommunityRow name="ETH Cinco de Mayo" impressions="2,820" />
-                <CommunityRow name="Ethereum México" impressions="1,759" />
-                <CommunityRow name="meximalist" impressions="1,241" />
-                <CommunityRow name="HerDAO México" impressions="1,085" />
-                <CommunityRow name="FlashTalkCoto" impressions="1,163" />
-              </div>
-            </div>
             
-            <div className="glow-card rounded-2xl p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <Users className="w-6 h-6 text-purple-400" />
-                <h3 className="text-xl font-semibold text-white">Estudiantes Activos (27)</h3>
+            <div className="grid md:grid-cols-3 gap-6 mt-8">
+              <MetricCard 
+                title="Engagement" 
+                icon={<Activity className="w-5 h-5 text-purple-400" />}
+                items={[
+                  { label: "Páginas/sesión", value: "3.17" },
+                  { label: "Scroll promedio", value: "72.49%" },
+                  { label: "Tiempo activo", value: "2:27" },
+                ]} 
+              />
+              <MetricCard 
+                title="Fuentes de Tráfico" 
+                icon={<Target className="w-5 h-5 text-cyan-400" />}
+                items={[
+                  { label: "Twitter", value: "62.6%" },
+                  { label: "YouTube", value: "16.1%" },
+                  { label: "Google", value: "4.3%" },
+                ]} 
+              />
+              <MetricCard 
+                title="Dispositivos" 
+                icon={<Monitor className="w-5 h-5 text-purple-400" />}
+                items={[
+                  { label: "Desktop", value: "62%" },
+                  { label: "Mobile", value: "38%" },
+                  { label: "Chrome", value: "75%" },
+                ]} 
+              />
+            </div>
+          </div>
+        </section>
+      </Link>
+
+      {/* Sessions Section - Clickable */}
+      <Link href="/sessions" className="block">
+        <section className="py-16 px-4 hover:bg-purple-900/5 transition-colors cursor-pointer">
+          <div className="max-w-6xl mx-auto">
+            <SectionTitleWithArrow title="Sesiones del Bootcamp" icon={<GraduationCap className="w-8 h-8 text-purple-400" />} subtitle="Click para ver detalles" />
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+              <SessionCard number={1} title="¿Qué es VibeCoding?" date="9 Feb" status="completed" />
+              <SessionCard number={2} title="Chat con tu Regenmon" date="11 Feb" status="completed" />
+              <SessionCard number={3} title="Stats y Evolución" date="13 Feb" status="completed" />
+              <SessionCard number={4} title="Tu Regenmon Evoluciona" date="16 Feb" status="completed" />
+              <SessionCard number={5} title="Comunidad" date="18 Feb" status="pending" />
+              <SessionCard number={6} title="Demo Day" date="20 Feb" status="pending" />
+            </div>
+          </div>
+        </section>
+      </Link>
+
+      {/* Twitter Section - Clickable */}
+      <Link href="/twitter" className="block">
+        <section className="py-16 px-4 bg-gradient-to-b from-transparent via-cyan-900/10 to-transparent hover:via-cyan-900/20 transition-colors cursor-pointer">
+          <div className="max-w-6xl mx-auto">
+            <SectionTitleWithArrow 
+              title="Métricas Twitter" 
+              icon={<Twitter className="w-8 h-8 text-cyan-400" />} 
+              subtitle="49,109 impresiones • Click para ver detalles" 
+            />
+            
+            <div className="grid md:grid-cols-2 gap-6 mt-8">
+              <div className="glow-card rounded-2xl p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <Trophy className="w-6 h-6 text-amber-400" />
+                  <h3 className="text-xl font-semibold text-white">Top Comunidades</h3>
+                </div>
+                <div className="space-y-4">
+                  <CommunityRow name="ETH Cinco de Mayo" impressions="2,820" />
+                  <CommunityRow name="Ethereum México" impressions="1,759" />
+                  <CommunityRow name="meximalist" impressions="1,241" />
+                </div>
               </div>
-              <div className="space-y-3">
-                <StudentRow handle="@S4kurak" posts={4} />
-                <StudentRow handle="@0xW4rw1ck" posts={3} />
-                <StudentRow handle="@0xSofiverse" posts={3} />
-                <StudentRow handle="@Yosoyraymon" posts={2} />
-                <StudentRow handle="@WairaT" posts={2} />
+              
+              <div className="glow-card rounded-2xl p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <Users className="w-6 h-6 text-purple-400" />
+                  <h3 className="text-xl font-semibold text-white">Estudiantes Activos (27)</h3>
+                </div>
+                <div className="space-y-3">
+                  <StudentRow handle="@S4kurak" posts={4} />
+                  <StudentRow handle="@0xW4rw1ck" posts={3} />
+                  <StudentRow handle="@0xSofiverse" posts={3} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </Link>
 
       {/* Top Performers Section */}
       <section className="py-16 px-4">
@@ -247,6 +236,19 @@ function SectionTitle({ title, icon, subtitle }: { title: string; icon: React.Re
   );
 }
 
+function SectionTitleWithArrow({ title, icon, subtitle }: { title: string; icon: React.ReactNode; subtitle?: string }) {
+  return (
+    <div className="text-center">
+      <div className="flex items-center justify-center gap-3">
+        {icon}
+        <h2 className="text-3xl md:text-4xl font-bold text-white">{title}</h2>
+        <ChevronRight className="w-8 h-8 text-purple-400" />
+      </div>
+      {subtitle && <p className="text-gray-400 mt-2">{subtitle}</p>}
+    </div>
+  );
+}
+
 function FunnelStep({ number, label, percentage, color }: { number: string; label: string; percentage: string; color: string }) {
   const colors: Record<string, string> = {
     purple: "bg-purple-500",
@@ -292,25 +294,6 @@ function MetricCard({ title, icon, items }: { title: string; icon: React.ReactNo
             <span className="text-white font-medium">{item.value}</span>
           </div>
         ))}
-      </div>
-    </div>
-  );
-}
-
-function PageRow({ page, visits, percentage }: { page: string; visits: number; percentage: number }) {
-  return (
-    <div className="flex items-center gap-4">
-      <div className="flex-1">
-        <div className="flex justify-between mb-1">
-          <span className="text-gray-300">{page}</span>
-          <span className="text-purple-400">{visits} visitas</span>
-        </div>
-        <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
-          <div 
-            className="h-full bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full"
-            style={{ width: `${percentage}%` }}
-          />
-        </div>
       </div>
     </div>
   );
