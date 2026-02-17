@@ -4,15 +4,20 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-// Stat Card - Responsive
-export function StatCard({ number, label, icon }: { number: string; label: string; icon: React.ReactNode }) {
-  return (
-    <div className="bg-[#141414] border border-[#262626] rounded-xl p-4 md:p-6 text-center transition-all hover:border-[#404040]">
+// Stat Card - Clickable & Responsive
+export function StatCard({ number, label, icon, href }: { number: string; label: string; icon: React.ReactNode; href?: string }) {
+  const content = (
+    <div className={"bg-[#141414] border border-[#262626] rounded-xl p-4 md:p-6 text-center transition-all " + (href ? "hover:border-orange-500/50 cursor-pointer" : "")}>
       <div className="flex justify-center mb-2 md:mb-3">{icon}</div>
       <p className="text-2xl md:text-4xl font-bold text-orange-500">{number}</p>
       <p className="text-gray-400 text-xs md:text-sm mt-1">{label}</p>
     </div>
   );
+  
+  if (href) {
+    return <Link href={href}>{content}</Link>;
+  }
+  return content;
 }
 
 // Section Title

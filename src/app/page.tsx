@@ -38,12 +38,12 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Stats Grid */}
+          {/* Stats Grid - CLICKABLE */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-8 md:mt-12">
-            <StatCard number="651" label="Visitas Web" icon={<Globe className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} />
-            <StatCard number="263" label="Usuarios Únicos" icon={<Users className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} />
-            <StatCard number="82" label="Inscripciones" icon={<FileText className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} />
-            <StatCard number="49K" label="Impresiones Twitter" icon={<Twitter className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} />
+            <StatCard number="651" label="Visitas Web" icon={<Globe className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/analytics" />
+            <StatCard number="263" label="Usuarios Únicos" icon={<Users className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/analytics" />
+            <StatCard number="82" label="Inscripciones" icon={<FileText className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/sessions" />
+            <StatCard number="49K" label="Impresiones Twitter" icon={<Twitter className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/twitter" />
           </div>
         </div>
       </section>

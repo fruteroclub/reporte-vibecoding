@@ -10,6 +10,20 @@ export const metadata: Metadata = {
   description: "Análisis completo de métricas de Twitter",
 };
 
+// Top posts with actual URLs
+const topPosts = [
+  { rank: 1, impressions: "2,505", likes: 44, comments: 7, url: "https://x.com/fruteroclub/status/2013346256668529076" },
+  { rank: 2, impressions: "2,237", likes: 25, comments: 1, url: "https://x.com/fruteroclub/status/2018776545846870034" },
+  { rank: 3, impressions: "2,183", likes: 21, comments: 2, url: "https://x.com/fruteroclub/status/2019063396067377657" },
+  { rank: 4, impressions: "1,023", likes: 6, comments: 1, url: "https://x.com/fruteroclub/status/2019892436227514626" },
+  { rank: 5, impressions: "988", likes: 12, comments: 1, url: "https://x.com/fruteroclub/status/2019561684931633325" },
+  { rank: 6, impressions: "950", likes: 17, comments: 1, url: "https://x.com/fruteroclub/status/2019425783325020161" },
+  { rank: 7, impressions: "656", likes: 23, comments: 6, url: "https://x.com/fruteroclub/status/2022071248067661951" },
+  { rank: 8, impressions: "539", likes: 5, comments: 0, url: "https://x.com/fruteroclub/status/2019795935652376877" },
+  { rank: 9, impressions: "538", likes: 15, comments: 1, url: "https://x.com/fruteroclub/status/2019892433698361470" },
+  { rank: 10, impressions: "530", likes: 17, comments: 4, url: "https://x.com/fruteroclub/status/2021627745080598807" },
+];
+
 export default function TwitterPage() {
   return (
     <main className="min-h-screen py-8 md:py-12 px-4">
@@ -37,11 +51,9 @@ export default function TwitterPage() {
           <div className="bg-[#141414] border border-[#262626] rounded-xl md:rounded-2xl p-4 md:p-6 mt-6">
             <h4 className="text-white font-semibold mb-4">Top 10 Posts por Impresiones</h4>
             <div className="space-y-3">
-              <TopPostRow rank={1} impressions="2,505" likes={44} comments={7} />
-              <TopPostRow rank={2} impressions="2,237" likes={25} comments={1} />
-              <TopPostRow rank={3} impressions="2,183" likes={21} comments={2} />
-              <TopPostRow rank={4} impressions="1,023" likes={6} comments={1} />
-              <TopPostRow rank={5} impressions="988" likes={12} comments={1} />
+              {topPosts.map((post) => (
+                <TopPostRow key={post.rank} {...post} />
+              ))}
             </div>
             
             <div className="mt-6 pt-4 border-t border-[#262626]">
@@ -174,10 +186,15 @@ function StatBox({ number, label, icon }: { number: string; label: string; icon:
   );
 }
 
-function TopPostRow({ rank, impressions, likes, comments }: { rank: number; impressions: string; likes: number; comments: number }) {
+function TopPostRow({ rank, impressions, likes, comments, url }: { rank: number; impressions: string; likes: number; comments: number; url: string }) {
   return (
-    <div className="flex items-center gap-3 py-2 border-b border-[#262626] last:border-0">
-      <span className="text-orange-500 font-bold w-6">#{rank}</span>
+    <a 
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-3 py-2 border-b border-[#262626] last:border-0 hover:bg-[#1a1a1a] -mx-2 px-2 rounded transition-colors group"
+    >
+      <span className="text-orange-500 font-bold w-8">#{rank}</span>
       <div className="flex-1 flex flex-wrap gap-3 text-sm">
         <span className="flex items-center gap-1 text-gray-400">
           <Eye className="w-3 h-3" /> {impressions}
@@ -189,18 +206,24 @@ function TopPostRow({ rank, impressions, likes, comments }: { rank: number; impr
           <MessageCircle className="w-3 h-3" /> {comments}
         </span>
       </div>
-    </div>
+      <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-orange-500 transition-colors" />
+    </a>
   );
 }
 
 function StudentStatRow({ handle, posts, impressions }: { handle: string; posts: number; impressions: string }) {
   return (
-    <div className="flex items-center justify-between py-2 border-b border-[#262626] last:border-0">
-      <span className="text-orange-500">{handle}</span>
+    <a 
+      href={"https://twitter.com/" + handle.replace("@", "")}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center justify-between py-2 border-b border-[#262626] last:border-0 hover:bg-[#1a1a1a] -mx-2 px-2 rounded transition-colors group"
+    >
+      <span className="text-orange-500 group-hover:underline">{handle}</span>
       <div className="flex gap-4 text-sm">
         <span className="text-gray-400">{posts} posts</span>
         <span className="text-white font-medium">{impressions} imp</span>
       </div>
-    </div>
+    </a>
   );
 }
