@@ -59,7 +59,7 @@ export default function Home() {
               <FunnelStep number="263" label="Usuarios únicos" percentage="40.4%" />
               <FunnelStep number="82" label="Inscripciones" percentage="31.2%" />
               <FunnelStep number="57" label="Activados" percentage="69.5%" />
-              <FunnelStep number="~10" label="Con progreso" percentage="12%" />
+              <FunnelStep number="40" label="Con progreso" percentage="70.2%" />
             </div>
           </div>
         </div>
