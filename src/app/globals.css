@@ -1,58 +1,72 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0f;
+  --background: #0a0a0a;
   --foreground: #ffffff;
-  --primary: #8b5cf6;
-  --primary-glow: rgba(139, 92, 246, 0.4);
-  --secondary: #06b6d4;
-  --secondary-glow: rgba(6, 182, 212, 0.4);
-  --accent: #f59e0b;
-  --card-bg: rgba(20, 20, 30, 0.8);
-  --card-border: rgba(139, 92, 246, 0.2);
+  --orange: #f97316;
+  --orange-dark: #ea580c;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --card-bg: #141414;
+  --card-border: #262626;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Frutero style - clean, no gradients */
+.text-orange {
+  color: var(--orange);
 }
 
-.glow-card {
+.bg-orange {
+  background-color: var(--orange);
+}
+
+.card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  box-shadow: 0 0 30px var(--primary-glow);
-  backdrop-filter: blur(10px);
+  border-radius: 12px;
 }
 
-.glow-card:hover {
-  border-color: var(--primary);
-  box-shadow: 0 0 50px var(--primary-glow);
+.card:hover {
+  border-color: var(--gray-600);
 }
 
 .stat-card {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1));
-  border: 1px solid rgba(139, 92, 246, 0.3);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
 }
 
-.neon-border {
-  position: relative;
+.btn-primary {
+  background-color: var(--orange);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: background-color 0.2s;
 }
 
-.neon-border::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  border-radius: inherit;
-  z-index: -1;
-  opacity: 0.5;
-  filter: blur(10px);
+.btn-primary:hover {
+  background-color: var(--orange-dark);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--gray-600);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: border-color 0.2s;
+}
+
+.btn-outline:hover {
+  border-color: white;
 }

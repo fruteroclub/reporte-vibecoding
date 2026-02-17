@@ -4,7 +4,7 @@ import {
   Globe, Users, FileText, Twitter, TrendingUp, BarChart3, 
   Monitor, Calendar, CheckCircle, Clock,
   Link2, Youtube, PieChart, Trophy, Medal, ExternalLink,
-  GraduationCap, Target, Activity, Eye, ChevronRight
+  GraduationCap, Target, Activity, ChevronRight
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -14,32 +14,32 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#0a0a0f]">
+    <main className="min-h-screen bg-[#0a0a0a]">
       {/* Hero Section */}
-      <section className="relative py-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent" />
-        <div className="max-w-6xl mx-auto relative z-10">
+      <section className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/20 text-purple-400 text-sm mb-6 border border-purple-500/30">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1a1a1a] text-gray-400 text-sm mb-6 border border-[#333]">
               <BarChart3 className="w-4 h-4" />
               Reporte Actualizado • 17 Feb 2026
             </span>
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="gradient-text">VibeCoding</span>
+              <span className="text-white">VibeCoding: </span>
+              <span className="text-orange-500">De Idea a App</span>
               <br />
-              <span className="text-white">Bootcamp 2026</span>
+              <span className="text-white">en 2 semanas con IA</span>
             </h1>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              De idea a app en 2 semanas • Reporte general de métricas y progreso
+              Reporte general de métricas y progreso del bootcamp
             </p>
           </div>
 
           {/* Stats Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
-            <StatCard number="651" label="Visitas Web" icon={<Globe className="w-8 h-8 text-purple-400" />} />
-            <StatCard number="263" label="Usuarios Únicos" icon={<Users className="w-8 h-8 text-cyan-400" />} />
-            <StatCard number="82" label="Inscripciones" icon={<FileText className="w-8 h-8 text-purple-400" />} />
-            <StatCard number="49K" label="Impresiones Twitter" icon={<Twitter className="w-8 h-8 text-cyan-400" />} />
+            <StatCard number="651" label="Visitas Web" icon={<Globe className="w-6 h-6 text-orange-500" />} />
+            <StatCard number="263" label="Usuarios Únicos" icon={<Users className="w-6 h-6 text-orange-500" />} />
+            <StatCard number="82" label="Inscripciones" icon={<FileText className="w-6 h-6 text-orange-500" />} />
+            <StatCard number="49K" label="Impresiones Twitter" icon={<Twitter className="w-6 h-6 text-orange-500" />} />
           </div>
         </div>
       </section>
@@ -47,34 +47,34 @@ export default function Home() {
       {/* Funnel Section */}
       <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <SectionTitle title="Funnel de Conversión" icon={<TrendingUp className="w-8 h-8 text-purple-400" />} />
+          <SectionTitle title="Funnel de Conversión" icon={<TrendingUp className="w-6 h-6 text-orange-500" />} />
           
-          <div className="glow-card rounded-2xl p-8 mt-8">
+          <div className="bg-[#141414] border border-[#262626] rounded-2xl p-8 mt-8">
             <div className="space-y-6">
-              <FunnelStep number="651" label="Visitas web" percentage="100%" color="purple" />
-              <FunnelStep number="263" label="Usuarios únicos" percentage="40.4%" color="cyan" />
-              <FunnelStep number="82" label="Inscripciones" percentage="31.2%" color="purple" />
-              <FunnelStep number="57" label="Activados" percentage="69.5%" color="green" />
-              <FunnelStep number="~10" label="Con progreso" percentage="12%" color="amber" />
+              <FunnelStep number="651" label="Visitas web" percentage="100%" />
+              <FunnelStep number="263" label="Usuarios únicos" percentage="40.4%" />
+              <FunnelStep number="82" label="Inscripciones" percentage="31.2%" />
+              <FunnelStep number="57" label="Activados" percentage="69.5%" />
+              <FunnelStep number="~10" label="Con progreso" percentage="12%" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Web Analytics Section - Clickable */}
+      {/* Web Analytics Section */}
       <Link href="/analytics" className="block">
-        <section className="py-16 px-4 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent hover:via-purple-900/20 transition-colors cursor-pointer">
+        <section className="py-16 px-4 hover:bg-[#0f0f0f] transition-colors cursor-pointer">
           <div className="max-w-6xl mx-auto">
             <SectionTitleWithArrow 
               title="Web Analytics" 
-              icon={<Globe className="w-8 h-8 text-cyan-400" />} 
+              icon={<Globe className="w-6 h-6 text-orange-500" />} 
               subtitle="Microsoft Clarity • Click para ver detalles" 
             />
             
             <div className="grid md:grid-cols-3 gap-6 mt-8">
               <MetricCard 
                 title="Engagement" 
-                icon={<Activity className="w-5 h-5 text-purple-400" />}
+                icon={<Activity className="w-5 h-5 text-orange-500" />}
                 items={[
                   { label: "Páginas/sesión", value: "3.17" },
                   { label: "Scroll promedio", value: "72.49%" },
@@ -83,7 +83,7 @@ export default function Home() {
               />
               <MetricCard 
                 title="Fuentes de Tráfico" 
-                icon={<Target className="w-5 h-5 text-cyan-400" />}
+                icon={<Target className="w-5 h-5 text-orange-500" />}
                 items={[
                   { label: "Twitter", value: "62.6%" },
                   { label: "YouTube", value: "16.1%" },
@@ -92,7 +92,7 @@ export default function Home() {
               />
               <MetricCard 
                 title="Dispositivos" 
-                icon={<Monitor className="w-5 h-5 text-purple-400" />}
+                icon={<Monitor className="w-5 h-5 text-orange-500" />}
                 items={[
                   { label: "Desktop", value: "62%" },
                   { label: "Mobile", value: "38%" },
@@ -104,11 +104,11 @@ export default function Home() {
         </section>
       </Link>
 
-      {/* Sessions Section - Clickable */}
+      {/* Sessions Section */}
       <Link href="/sessions" className="block">
-        <section className="py-16 px-4 hover:bg-purple-900/5 transition-colors cursor-pointer">
+        <section className="py-16 px-4 hover:bg-[#0f0f0f] transition-colors cursor-pointer">
           <div className="max-w-6xl mx-auto">
-            <SectionTitleWithArrow title="Sesiones del Bootcamp" icon={<GraduationCap className="w-8 h-8 text-purple-400" />} subtitle="Click para ver detalles" />
+            <SectionTitleWithArrow title="Sesiones del Bootcamp" icon={<GraduationCap className="w-6 h-6 text-orange-500" />} subtitle="Click para ver detalles" />
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
               <SessionCard number={1} title="¿Qué es VibeCoding?" date="9 Feb" status="completed" />
@@ -122,20 +122,20 @@ export default function Home() {
         </section>
       </Link>
 
-      {/* Twitter Section - Clickable */}
+      {/* Twitter Section */}
       <Link href="/twitter" className="block">
-        <section className="py-16 px-4 bg-gradient-to-b from-transparent via-cyan-900/10 to-transparent hover:via-cyan-900/20 transition-colors cursor-pointer">
+        <section className="py-16 px-4 hover:bg-[#0f0f0f] transition-colors cursor-pointer">
           <div className="max-w-6xl mx-auto">
             <SectionTitleWithArrow 
               title="Métricas Twitter" 
-              icon={<Twitter className="w-8 h-8 text-cyan-400" />} 
+              icon={<Twitter className="w-6 h-6 text-orange-500" />} 
               subtitle="49,109 impresiones • Click para ver detalles" 
             />
             
             <div className="grid md:grid-cols-2 gap-6 mt-8">
-              <div className="glow-card rounded-2xl p-8">
+              <div className="bg-[#141414] border border-[#262626] rounded-2xl p-8">
                 <div className="flex items-center gap-3 mb-6">
-                  <Trophy className="w-6 h-6 text-amber-400" />
+                  <Trophy className="w-6 h-6 text-orange-500" />
                   <h3 className="text-xl font-semibold text-white">Top Comunidades</h3>
                 </div>
                 <div className="space-y-4">
@@ -145,9 +145,9 @@ export default function Home() {
                 </div>
               </div>
               
-              <div className="glow-card rounded-2xl p-8">
+              <div className="bg-[#141414] border border-[#262626] rounded-2xl p-8">
                 <div className="flex items-center gap-3 mb-6">
-                  <Users className="w-6 h-6 text-purple-400" />
+                  <Users className="w-6 h-6 text-orange-500" />
                   <h3 className="text-xl font-semibold text-white">Estudiantes Activos (27)</h3>
                 </div>
                 <div className="space-y-3">
@@ -166,11 +166,11 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <SectionTitle 
             title="Top Performers" 
-            icon={<Medal className="w-8 h-8 text-amber-400" />} 
+            icon={<Medal className="w-6 h-6 text-orange-500" />} 
             subtitle="Estudiantes con mayor progreso" 
           />
           
-          <div className="glow-card rounded-2xl p-8 mt-8">
+          <div className="bg-[#141414] border border-[#262626] rounded-2xl p-8 mt-8">
             <div className="space-y-4">
               <PerformerRow email="anthonyanachury@gmail.com" progress={40} sessions={2} rank={1} />
               <PerformerRow email="direccion@platohedro.org" progress={40} sessions={2} rank={2} />
@@ -183,26 +183,26 @@ export default function Home() {
       </section>
 
       {/* Links Section */}
-      <section className="py-16 px-4 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent">
+      <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <SectionTitle title="Links Importantes" icon={<Link2 className="w-8 h-8 text-purple-400" />} />
+          <SectionTitle title="Links Importantes" icon={<Link2 className="w-6 h-6 text-orange-500" />} />
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
-            <LinkCard title="Landing Page" url="https://bootcamp.frutero.club/" icon={<Globe className="w-6 h-6 text-purple-400" />} />
-            <LinkCard title="Canal YouTube" url="https://www.youtube.com/@fruterotv" icon={<Youtube className="w-6 h-6 text-red-400" />} />
-            <LinkCard title="Microsoft Clarity" url="https://clarity.microsoft.com/projects/view/v88xp2n5qs/dashboard" icon={<PieChart className="w-6 h-6 text-cyan-400" />} />
-            <LinkCard title="Métricas Twitter" url="https://docs.google.com/spreadsheets/d/1IR9E70JuFQyE-WiCGs4ziZHBaSyQwysdkHtV0JK2UPE/edit" icon={<Twitter className="w-6 h-6 text-cyan-400" />} />
-            <LinkCard title="Lista Estudiantes" url="https://docs.google.com/spreadsheets/d/1BaaSr97v1osRpfvHCe9c5CPNLvd0_MukXGzr-s1FErM/edit" icon={<Users className="w-6 h-6 text-purple-400" />} />
-            <LinkCard title="Entregables" url="https://poktapok-iaegp4wrg-fruteroclub.vercel.app/bootcamp/vibecoding" icon={<FileText className="w-6 h-6 text-amber-400" />} />
+            <LinkCard title="Landing Page" url="https://bootcamp.frutero.club/" icon={<Globe className="w-5 h-5 text-orange-500" />} />
+            <LinkCard title="Canal YouTube" url="https://www.youtube.com/@fruterotv" icon={<Youtube className="w-5 h-5 text-red-500" />} />
+            <LinkCard title="Microsoft Clarity" url="https://clarity.microsoft.com/projects/view/v88xp2n5qs/dashboard" icon={<PieChart className="w-5 h-5 text-orange-500" />} />
+            <LinkCard title="Métricas Twitter" url="https://docs.google.com/spreadsheets/d/1IR9E70JuFQyE-WiCGs4ziZHBaSyQwysdkHtV0JK2UPE/edit" icon={<Twitter className="w-5 h-5 text-orange-500" />} />
+            <LinkCard title="Lista Estudiantes" url="https://docs.google.com/spreadsheets/d/1BaaSr97v1osRpfvHCe9c5CPNLvd0_MukXGzr-s1FErM/edit" icon={<Users className="w-5 h-5 text-orange-500" />} />
+            <LinkCard title="Entregables" url="https://poktapok-iaegp4wrg-fruteroclub.vercel.app/bootcamp/vibecoding" icon={<FileText className="w-5 h-5 text-orange-500" />} />
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 border-t border-purple-500/20">
+      <footer className="py-12 px-4 border-t border-[#262626]">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-gray-400">
-            Generado por <span className="text-purple-400">Fruterito</span>
+            Generado por <span className="text-orange-500">Fruterito</span> 🍓
           </p>
           <p className="text-gray-500 text-sm mt-2">
             VibeCoding Bootcamp • Frutero Club 2026
@@ -213,12 +213,12 @@ export default function Home() {
   );
 }
 
-// Components
+// Components - Frutero Style (clean, no gradients)
 function StatCard({ number, label, icon }: { number: string; label: string; icon: React.ReactNode }) {
   return (
-    <div className="stat-card rounded-xl p-6 text-center transition-all hover:scale-105">
+    <div className="bg-[#141414] border border-[#262626] rounded-xl p-6 text-center transition-all hover:border-[#404040]">
       <div className="flex justify-center mb-3">{icon}</div>
-      <p className="text-3xl md:text-4xl font-bold gradient-text">{number}</p>
+      <p className="text-3xl md:text-4xl font-bold text-orange-500">{number}</p>
       <p className="text-gray-400 text-sm mt-1">{label}</p>
     </div>
   );
@@ -242,30 +242,23 @@ function SectionTitleWithArrow({ title, icon, subtitle }: { title: string; icon:
       <div className="flex items-center justify-center gap-3">
         {icon}
         <h2 className="text-3xl md:text-4xl font-bold text-white">{title}</h2>
-        <ChevronRight className="w-8 h-8 text-purple-400" />
+        <ChevronRight className="w-6 h-6 text-orange-500" />
       </div>
       {subtitle && <p className="text-gray-400 mt-2">{subtitle}</p>}
     </div>
   );
 }
 
-function FunnelStep({ number, label, percentage, color }: { number: string; label: string; percentage: string; color: string }) {
-  const colors: Record<string, string> = {
-    purple: "bg-purple-500",
-    cyan: "bg-cyan-500",
-    green: "bg-green-500",
-    amber: "bg-amber-500",
-  };
-  
+function FunnelStep({ number, label, percentage }: { number: string; label: string; percentage: string }) {
   return (
     <div className="flex items-center gap-4">
-      <div className="w-24 text-right">
+      <div className="w-20 text-right">
         <span className="text-2xl font-bold text-white">{number}</span>
       </div>
       <div className="flex-1">
-        <div className="h-8 bg-gray-800 rounded-full overflow-hidden">
+        <div className="h-8 bg-[#1a1a1a] rounded-full overflow-hidden">
           <div 
-            className={`h-full ${colors[color]} rounded-full transition-all`}
+            className="h-full bg-orange-500 rounded-full"
             style={{ width: percentage }}
           />
         </div>
@@ -274,7 +267,7 @@ function FunnelStep({ number, label, percentage, color }: { number: string; labe
         <span className="text-gray-400">{label}</span>
       </div>
       <div className="w-16 text-right">
-        <span className="text-purple-400 font-medium">{percentage}</span>
+        <span className="text-orange-500 font-medium">{percentage}</span>
       </div>
     </div>
   );
@@ -282,7 +275,7 @@ function FunnelStep({ number, label, percentage, color }: { number: string; labe
 
 function MetricCard({ title, icon, items }: { title: string; icon: React.ReactNode; items: { label: string; value: string }[] }) {
   return (
-    <div className="glow-card rounded-2xl p-6">
+    <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6">
       <div className="flex items-center gap-2 mb-4">
         {icon}
         <h3 className="text-lg font-semibold text-white">{title}</h3>
@@ -301,21 +294,21 @@ function MetricCard({ title, icon, items }: { title: string; icon: React.ReactNo
 
 function SessionCard({ number, title, date, status }: { number: number; title: string; date: string; status: "completed" | "pending" }) {
   return (
-    <div className={`glow-card rounded-xl p-6 ${status === "completed" ? "border-green-500/30" : "border-amber-500/30"}`}>
+    <div className="bg-[#141414] border border-[#262626] rounded-xl p-6 hover:border-[#404040] transition-colors">
       <div className="flex items-start justify-between">
         <div>
-          <span className="text-purple-400 text-sm">Sesión {number}</span>
+          <span className="text-orange-500 text-sm font-medium">Sesión {number}</span>
           <h3 className="text-white font-semibold mt-1">{title}</h3>
           <div className="flex items-center gap-2 mt-2 text-gray-500 text-sm">
             <Calendar className="w-4 h-4" />
             {date}
           </div>
         </div>
-        <span className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs ${
-          status === "completed" 
-            ? "bg-green-500/20 text-green-400" 
-            : "bg-amber-500/20 text-amber-400"
-        }`}>
+        <span className={"flex items-center gap-1 px-3 py-1 rounded-full text-xs " + 
+          (status === "completed" 
+            ? "bg-green-500/10 text-green-500 border border-green-500/20" 
+            : "bg-orange-500/10 text-orange-500 border border-orange-500/20")
+        }>
           {status === "completed" ? <CheckCircle className="w-3 h-3" /> : <Clock className="w-3 h-3" />}
           {status === "completed" ? "Completada" : "Pendiente"}
         </span>
@@ -326,9 +319,9 @@ function SessionCard({ number, title, date, status }: { number: number; title: s
 
 function CommunityRow({ name, impressions }: { name: string; impressions: string }) {
   return (
-    <div className="flex justify-between items-center py-2 border-b border-gray-800">
+    <div className="flex justify-between items-center py-2 border-b border-[#262626]">
       <span className="text-gray-300">{name}</span>
-      <span className="text-cyan-400 font-medium">{impressions} imp</span>
+      <span className="text-orange-500 font-medium">{impressions} imp</span>
     </div>
   );
 }
@@ -336,7 +329,7 @@ function CommunityRow({ name, impressions }: { name: string; impressions: string
 function StudentRow({ handle, posts }: { handle: string; posts: number }) {
   return (
     <div className="flex justify-between items-center py-2">
-      <span className="text-purple-400">{handle}</span>
+      <span className="text-orange-500">{handle}</span>
       <span className="text-gray-400">{posts} posts</span>
     </div>
   );
@@ -344,20 +337,20 @@ function StudentRow({ handle, posts }: { handle: string; posts: number }) {
 
 function PerformerRow({ email, progress, sessions, rank }: { email: string; progress: number; sessions: number; rank: number }) {
   const medals = [
-    <Trophy key={1} className="w-6 h-6 text-amber-400" />,
-    <Medal key={2} className="w-6 h-6 text-gray-400" />,
-    <Medal key={3} className="w-6 h-6 text-amber-600" />,
-    <span key={4} className="w-6 h-6 flex items-center justify-center text-gray-500 font-bold">4</span>,
-    <span key={5} className="w-6 h-6 flex items-center justify-center text-gray-500 font-bold">5</span>,
+    <Trophy key={1} className="w-5 h-5 text-orange-500" />,
+    <Medal key={2} className="w-5 h-5 text-gray-400" />,
+    <Medal key={3} className="w-5 h-5 text-orange-700" />,
+    <span key={4} className="w-5 h-5 flex items-center justify-center text-gray-500 font-bold text-sm">4</span>,
+    <span key={5} className="w-5 h-5 flex items-center justify-center text-gray-500 font-bold text-sm">5</span>,
   ];
   return (
-    <div className="flex items-center gap-4 py-3 border-b border-gray-800">
+    <div className="flex items-center gap-4 py-3 border-b border-[#262626] last:border-0">
       <div className="w-8">{medals[rank - 1]}</div>
       <div className="flex-1">
         <p className="text-gray-300 truncate">{email}</p>
       </div>
       <div className="text-right">
-        <span className="text-purple-400 font-bold">{progress}%</span>
+        <span className="text-orange-500 font-bold">{progress}%</span>
         <span className="text-gray-500 text-sm ml-2">({sessions} sesiones)</span>
       </div>
     </div>
@@ -370,14 +363,14 @@ function LinkCard({ title, url, icon }: { title: string; url: string; icon: Reac
       href={url} 
       target="_blank" 
       rel="noopener noreferrer"
-      className="glow-card rounded-xl p-4 flex items-center gap-4 hover:border-purple-500 transition-all group"
+      className="bg-[#141414] border border-[#262626] rounded-xl p-4 flex items-center gap-4 hover:border-orange-500/50 transition-all group"
     >
       {icon}
       <div className="flex-1 min-w-0">
         <p className="text-white font-medium">{title}</p>
         <p className="text-gray-500 text-xs truncate">{url}</p>
       </div>
-      <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-purple-400 transition-colors" />
+      <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-orange-500 transition-colors" />
     </a>
   );
 }
