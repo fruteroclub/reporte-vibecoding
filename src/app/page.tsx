@@ -66,23 +66,23 @@ const poaps = [
     session: 5,
     name: "Vibe Coding Bootcamp S5",
     date: "Feb 18, 2026",
-    description: "Comunidad - Próximamente",
-    tokenId: null,
-    dropId: null,
-    status: "pending",
-    collectors: 0,
-    image: null
+    description: "Los Regenmons dejaron de ser apps solitarias para conectarse entre ellos y volverse algo social.",
+    tokenId: "7567157",
+    dropId: "226248",
+    status: "minted",
+    collectors: 18,
+    image: "https://assets.poap.xyz/c7bf25ae-fcb5-4a49-80a7-a10a90658a48.png"
   },
   {
     session: 6,
-    name: "Vibe Coding Bootcamp S6",
+    name: "Vibe Coding Bootcamp Badge",
     date: "Feb 20, 2026",
-    description: "Demo Day - Próximamente",
-    tokenId: null,
-    dropId: null,
-    status: "pending",
-    collectors: 0,
-    image: null
+    description: "De cero a live app. 5 sesiones. Fruta Certificada en Vibe Coding.",
+    tokenId: "7568641",
+    dropId: "226320",
+    status: "minted",
+    collectors: 15,
+    image: "https://assets.poap.xyz/e6e889e8-a3df-435c-b620-41416ed22a42.png"
   },
 ];
 
@@ -209,8 +209,8 @@ export default function Home() {
               <SessionCard number={2} title="Chat con tu Regenmon" date="11 Feb" status="completed" />
               <SessionCard number={3} title="Stats y Evolución" date="13 Feb" status="completed" />
               <SessionCard number={4} title="Tu Regenmon Evoluciona" date="16 Feb" status="completed" />
-              <SessionCard number={5} title="Comunidad" date="18 Feb" status="pending" />
-              <SessionCard number={6} title="Demo Day" date="20 Feb" status="pending" />
+              <SessionCard number={5} title="Comunidad" date="18 Feb" status="completed" />
+              <SessionCard number={6} title="Demo Day" date="20 Feb" status="completed" />
             </div>
           </div>
         </section>
