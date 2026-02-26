@@ -8,7 +8,7 @@ import {
 import {
   StatCard, SectionTitle, SectionTitleWithArrow, FunnelStep,
   MetricCard, SessionCard, CommunityRow, StudentRow,
-  PerformerRow, LinkCard
+  PerformerRow, LinkCard, ArcoTabs
 } from "@/components/SharedComponents";
 
 export const metadata: Metadata = {
@@ -93,6 +93,9 @@ export default function Home() {
       <section className="py-12 md:py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8 md:mb-12">
+            {/* ARCO Tabs */}
+            <ArcoTabs active="arco1" />
+            
             <span className="inline-flex items-center gap-2 px-3 md:px-4 py-2 rounded-full bg-[#1a1a1a] text-gray-400 text-xs md:text-sm mb-4 md:mb-6 border border-[#333]">
               <BarChart3 className="w-3 h-3 md:w-4 md:h-4" />
               Reporte Actualizado • 17 Feb 2026

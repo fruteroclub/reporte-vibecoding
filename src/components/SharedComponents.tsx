@@ -1,8 +1,38 @@
 import { 
   Calendar, CheckCircle, Clock, ExternalLink, ChevronRight,
-  Trophy, Medal
+  Trophy, Medal, Flame, BookOpen
 } from "lucide-react";
 import Link from "next/link";
+
+// ARCO Navigation Tabs
+export function ArcoTabs({ active }: { active: "arco1" | "arco2" | "home" }) {
+  return (
+    <div className="flex items-center justify-center gap-2 md:gap-4 mb-4 md:mb-6">
+      <Link 
+        href="/"
+        className={`flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-base font-medium transition-all ${
+          active === "arco1" || active === "home"
+            ? "bg-orange-500 text-black" 
+            : "bg-[#1a1a1a] text-gray-400 hover:text-white border border-[#333] hover:border-orange-500/50"
+        }`}
+      >
+        <BookOpen className="w-4 h-4" />
+        ARCO 1
+      </Link>
+      <Link 
+        href="/arco2"
+        className={`flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-base font-medium transition-all ${
+          active === "arco2"
+            ? "bg-orange-500 text-black" 
+            : "bg-[#1a1a1a] text-gray-400 hover:text-white border border-[#333] hover:border-orange-500/50"
+        }`}
+      >
+        <Flame className="w-4 h-4" />
+        ARCO 2
+      </Link>
+    </div>
+  );
+}
 
 // Stat Card - Clickable & Responsive
 export function StatCard({ number, label, icon, href }: { number: string; label: string; icon: React.ReactNode; href?: string }) {
