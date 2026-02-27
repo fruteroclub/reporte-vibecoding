@@ -116,7 +116,7 @@ export default function Home() {
             <StatCard number="651" label="Visitas Web" icon={<Globe className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/analytics" />
             <StatCard number="263" label="Usuarios Únicos" icon={<Users className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/analytics" />
             <StatCard number="90" label="Inscripciones" icon={<FileText className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/sessions" />
-            <StatCard number="49K" label="Impresiones Twitter" icon={<Twitter className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/twitter" />
+            <StatCard number="52.5K" label="Impresiones Twitter" icon={<Twitter className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/twitter" />
           </div>
         </div>
       </section>
@@ -223,7 +223,7 @@ export default function Home() {
             <SectionTitleWithArrow 
               title="Métricas Twitter" 
               icon={<Twitter className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} 
-              subtitle="49,109 impresiones • Click para ver detalles" 
+              subtitle="52,535 impresiones • Click para ver detalles" 
             />
             
             <div className="grid md:grid-cols-2 gap-4 md:gap-6 mt-6 md:mt-8">
