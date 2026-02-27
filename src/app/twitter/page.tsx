@@ -32,21 +32,21 @@ export default function TwitterPage() {
         
         <PageHeader 
           title="Métricas Twitter" 
-          subtitle="@fruteroclub • 49,109 impresiones totales"
+          subtitle="@fruteroclub • 52,535 impresiones totales"
           icon={<Twitter className="w-8 h-8 md:w-10 md:h-10 text-orange-500" />}
         />
 
         {/* Overview Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-8 md:mb-12">
-          <StatBox number="49,109" label="Impresiones" icon={<Eye className="w-5 h-5 text-orange-500" />} />
-          <StatBox number="26" label="Posts @fruteroclub" icon={<Twitter className="w-5 h-5 text-orange-500" />} />
-          <StatBox number="52" label="Menciones Externas" icon={<MessageCircle className="w-5 h-5 text-orange-500" />} />
+          <StatBox number="52,535" label="Impresiones" icon={<Eye className="w-5 h-5 text-orange-500" />} />
+          <StatBox number="29" label="Posts @fruteroclub" icon={<Twitter className="w-5 h-5 text-orange-500" />} />
+          <StatBox number="58" label="Menciones Externas" icon={<MessageCircle className="w-5 h-5 text-orange-500" />} />
           <StatBox number="27" label="Estudiantes Activos" icon={<Users className="w-5 h-5 text-orange-500" />} />
         </div>
 
         {/* @fruteroclub Section */}
         <section className="mb-8 md:mb-12">
-          <SectionTitle title="Posts de @fruteroclub" icon={<Twitter className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} subtitle="26 posts • 14,688 impresiones" />
+          <SectionTitle title="Posts de @fruteroclub" icon={<Twitter className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} subtitle="29 posts • 17,567 impresiones" />
           
           <div className="bg-[#141414] border border-[#262626] rounded-xl md:rounded-2xl p-4 md:p-6 mt-6">
             <h4 className="text-white font-semibold mb-4">Top 10 Posts por Impresiones</h4>
@@ -60,15 +60,15 @@ export default function TwitterPage() {
               <h4 className="text-white font-semibold mb-3">Métricas Agregadas</h4>
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div>
-                  <p className="text-2xl font-bold text-orange-500">14,688</p>
+                  <p className="text-2xl font-bold text-orange-500">17,567</p>
                   <p className="text-gray-400 text-sm">Impresiones</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-orange-500">319</p>
+                  <p className="text-2xl font-bold text-orange-500">375</p>
                   <p className="text-gray-400 text-sm">Likes</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-orange-500">2.17%</p>
+                  <p className="text-2xl font-bold text-orange-500">2.13%</p>
                   <p className="text-gray-400 text-sm">Engagement</p>
                 </div>
               </div>
@@ -130,20 +130,20 @@ export default function TwitterPage() {
 
         {/* Videos Section */}
         <section className="mb-8 md:mb-12">
-          <SectionTitle title="Videos" icon={<Video className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} subtitle="3 videos • 5,118 views" />
+          <SectionTitle title="Videos" icon={<Video className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} subtitle="4 videos • 5,325 views" />
           
           <div className="bg-[#141414] border border-[#262626] rounded-xl md:rounded-2xl p-4 md:p-6 mt-6">
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
-                <p className="text-3xl font-bold text-orange-500">3</p>
+                <p className="text-3xl font-bold text-orange-500">4</p>
                 <p className="text-gray-400 text-sm">Videos</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-orange-500">5,118</p>
+                <p className="text-3xl font-bold text-orange-500">5,325</p>
                 <p className="text-gray-400 text-sm">Views Totales</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-orange-500">1,706</p>
+                <p className="text-3xl font-bold text-orange-500">1,331</p>
                 <p className="text-gray-400 text-sm">Promedio/Video</p>
               </div>
             </div>

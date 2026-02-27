@@ -28,11 +28,11 @@ const sessions = [
     youtube: null, doc: "/doc/session-4", prompt: "/doc/session-4/prompt", deliverable: "/doc/session-4/deliverable",
     visits: null
   },
-  { number: 5, name: "Comunidad", date: "18 Feb", time: "17:00", status: "pending",
+  { number: 5, name: "Comunidad", date: "18 Feb", time: "17:00", status: "completed",
     youtube: null, doc: "/doc/session-5", prompt: "/doc/session-5/prompt", deliverable: "/doc/session-5/deliverable",
     visits: null
   },
-  { number: 6, name: "Demo Day", date: "20 Feb", time: "17:00", status: "pending",
+  { number: 6, name: "Demo Day", date: "20 Feb", time: "17:00", status: "completed",
     youtube: null, doc: "/doc/session-6", prompt: "/doc/session-6/prompt", deliverable: "/doc/session-6/deliverable",
     visits: null
   },
@@ -55,14 +55,14 @@ export default function SessionsPage() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <h3 className="text-white font-semibold">Progreso del Bootcamp</h3>
-              <p className="text-gray-400 text-sm">4 de 6 sesiones completadas</p>
+              <p className="text-gray-400 text-sm">6 de 6 sesiones completadas</p>
             </div>
             <div className="flex-1 md:max-w-md">
               <div className="h-3 bg-[#1a1a1a] rounded-full overflow-hidden">
-                <div className="h-full bg-orange-500 rounded-full" style={{ width: "66.6%" }} />
+                <div className="h-full bg-green-500 rounded-full" style={{ width: "100%" }} />
               </div>
             </div>
-            <span className="text-orange-500 font-bold text-xl">66%</span>
+            <span className="text-green-500 font-bold text-xl">100%</span>
           </div>
         </div>
 
