@@ -115,7 +115,7 @@ export default function Home() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-8 md:mt-12">
             <StatCard number="651" label="Visitas Web" icon={<Globe className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/analytics" />
             <StatCard number="263" label="Usuarios Únicos" icon={<Users className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/analytics" />
-            <StatCard number="82" label="Inscripciones" icon={<FileText className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/sessions" />
+            <StatCard number="90" label="Inscripciones" icon={<FileText className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/sessions" />
             <StatCard number="49K" label="Impresiones Twitter" icon={<Twitter className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />} href="/twitter" />
           </div>
         </div>
@@ -147,9 +147,9 @@ export default function Home() {
             <div className="space-y-4 md:space-y-6">
               <FunnelStep number="651" label="Visitas web" percentage="100%" />
               <FunnelStep number="263" label="Usuarios únicos" percentage="40.4%" />
-              <FunnelStep number="82" label="Inscripciones" percentage="31.2%" />
-              <FunnelStep number="57" label="Activados" percentage="69.5%" />
-              <FunnelStep number="40" label="Con progreso" percentage="70.2%" />
+              <FunnelStep number="90" label="Inscripciones" percentage="34.2%" />
+              <FunnelStep number="43" label="Activos" percentage="47.8%" />
+              <FunnelStep number="23" label="Graduados" percentage="53.5%" />
             </div>
           </div>
         </div>
