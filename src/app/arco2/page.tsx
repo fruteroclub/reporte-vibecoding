@@ -191,8 +191,8 @@ export default function Arco2Page() {
     setParticipantes(prev => {
       const updated = [...prev];
       const currentStatus = updated[participanteIdx].cp[cpIdx];
-      // Ciclo: 0 (pending) → 1 (done) → 2 (blocked) → 0
-      const newStatus = (currentStatus + 1) % 3;
+      // Ciclo: 0 (pending) → 1 (refinamiento) → 2 (done) → 3 (blocked) → 0
+      const newStatus = (currentStatus + 1) % 4;
       updated[participanteIdx] = {
         ...updated[participanteIdx],
         cp: updated[participanteIdx].cp.map((s, i) => i === cpIdx ? newStatus : s)
@@ -383,7 +383,9 @@ export default function Arco2Page() {
                           <div
                             key={idx}
                             className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                              status === 0 ? "bg-gray-600" : status === 1 ? "bg-green-500" : "bg-red-500"
+                              status === 0 ? "bg-gray-600" : 
+                              status === 1 ? "bg-yellow-500" : 
+                              status === 2 ? "bg-green-500" : "bg-red-500"
                             } text-white`}
                           >
                             {idx + 1}
@@ -503,9 +505,12 @@ export default function Arco2Page() {
             
             {/* Legend */}
             <div className="mt-4 pt-4 border-t border-[#262626]">
-              <div className="flex items-center justify-center gap-4 flex-wrap">
+              <div className="flex items-center justify-center gap-3 flex-wrap">
                 <div className="flex items-center gap-1 text-xs text-gray-500">
                   <div className="w-3 h-3 rounded-full bg-gray-600" /> Pendiente
+                </div>
+                <div className="flex items-center gap-1 text-xs text-gray-500">
+                  <div className="w-3 h-3 rounded-full bg-yellow-500" /> Refinamiento
                 </div>
                 <div className="flex items-center gap-1 text-xs text-gray-500">
                   <div className="w-3 h-3 rounded-full bg-green-500" /> Completado
@@ -567,16 +572,18 @@ export default function Arco2Page() {
 }
 
 // Pendiente Item Component
-// Checkpoint Dot Component - CLICKEABLE
+// Checkpoint Dot Component - CLICKEABLE (4 estados)
 function CheckpointDot({ status, num, onClick }: { status: number; num: number; onClick: () => void }) {
-  // status: 0=pending, 1=done, 2=blocked
+  // status: 0=pending, 1=refinamiento, 2=done, 3=blocked
   const colors = {
     0: "bg-gray-600 hover:bg-gray-400",
-    1: "bg-green-500 hover:bg-green-400",
-    2: "bg-red-500 hover:bg-red-400",
+    1: "bg-yellow-500 hover:bg-yellow-400",
+    2: "bg-green-500 hover:bg-green-400",
+    3: "bg-red-500 hover:bg-red-400",
   };
   
-  const statusText = status === 0 ? 'Pendiente' : status === 1 ? 'Completado' : 'Bloqueado';
+  const statusTexts = ['Pendiente', 'Necesita refinamiento', 'Completado', 'Bloqueado'];
+  const statusText = statusTexts[status] || 'Pendiente';
   
   return (
     <button 
