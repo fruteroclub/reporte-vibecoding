@@ -14,20 +14,21 @@ export const metadata: Metadata = {
   description: "1 semana para lanzar TU producto - Mentoría 1:1",
 };
 
-// Participantes data
+// Participantes data con checkpoints
+// cp = [cp1, cp2, cp3, cp4, cp5] donde: 0=pending, 1=done, 2=blocked
 const participantes = [
-  { handle: "@S4kurak", mentor: "Mel", proyecto: "TBD", status: "pending" },
-  { handle: "@wairamoon", mentor: "Brian", proyecto: "TBD", status: "pending" },
-  { handle: "@Whitehatcryptoedd", mentor: "Scarf", proyecto: "TBD", status: "pending" },
-  { handle: "@LokiyIsaac", mentor: "Mel", proyecto: "TBD", status: "pending" },
-  { handle: "@sergiotechx", mentor: "Mel", proyecto: "TBD", status: "pending" },
-  { handle: "@esdras_josue", mentor: "Brian", proyecto: "TBD", status: "pending" },
-  { handle: "@BBPMW", mentor: "Scarf", proyecto: "TBD", status: "pending" },
-  { handle: "@ToryDom", mentor: "Brian", proyecto: "TBD", status: "pending" },
-  { handle: "@eeelien39", mentor: "Scarf", proyecto: "TBD", status: "pending" },
-  { handle: "@Alan_BK_Breck", mentor: "Vale", proyecto: "TBD", status: "pending" },
-  { handle: "@j4rias", mentor: "Vale", proyecto: "TBD", status: "pending" },
-  { handle: "@DanielRubio_Web3", mentor: "Vale", proyecto: "TBD", status: "pending" },
+  { handle: "@S4kurak", mentor: "Mel", proyecto: "TBD", cp: [0,0,0,0,0] },
+  { handle: "@wairamoon", mentor: "Brian", proyecto: "TBD", cp: [0,0,0,0,0] },
+  { handle: "@Whitehatcryptoedd", mentor: "Scarf", proyecto: "TBD", cp: [0,0,0,0,0] },
+  { handle: "@LokiyIsaac", mentor: "Mel", proyecto: "TBD", cp: [0,0,0,0,0] },
+  { handle: "@sergiotechx", mentor: "Mel", proyecto: "TBD", cp: [0,0,0,0,0] },
+  { handle: "@esdras_josue", mentor: "Brian", proyecto: "TBD", cp: [0,0,0,0,0] },
+  { handle: "@BBPMW", mentor: "Scarf", proyecto: "TBD", cp: [0,0,0,0,0] },
+  { handle: "@ToryDom", mentor: "Brian", proyecto: "TBD", cp: [0,0,0,0,0] },
+  { handle: "@eeelien39", mentor: "Scarf", proyecto: "TBD", cp: [0,0,0,0,0] },
+  { handle: "@Alan_BK_Breck", mentor: "Vale", proyecto: "TBD", cp: [0,0,0,0,0] },
+  { handle: "@j4rias", mentor: "Vale", proyecto: "TBD", cp: [0,0,0,0,0] },
+  { handle: "@DanielRubio_Web3", mentor: "Vale", proyecto: "TBD", cp: [0,0,0,0,0] },
 ];
 
 const mentores = [
@@ -204,7 +205,7 @@ export default function Arco2Page() {
                     <th className="text-left text-gray-400 text-xs md:text-sm font-medium py-3 px-2">Participante</th>
                     <th className="text-left text-gray-400 text-xs md:text-sm font-medium py-3 px-2">Mentor</th>
                     <th className="text-left text-gray-400 text-xs md:text-sm font-medium py-3 px-2 hidden sm:table-cell">Proyecto</th>
-                    <th className="text-center text-gray-400 text-xs md:text-sm font-medium py-3 px-2">Estado</th>
+                    <th className="text-center text-gray-400 text-xs md:text-sm font-medium py-3 px-2">Checkpoints</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -214,15 +215,29 @@ export default function Arco2Page() {
                       <td className="text-gray-300 text-sm md:text-base py-3 px-2">{p.mentor}</td>
                       <td className="text-gray-500 text-sm md:text-base py-3 px-2 hidden sm:table-cell">{p.proyecto}</td>
                       <td className="text-center py-3 px-2">
-                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs bg-orange-500/10 text-orange-500 border border-orange-500/20">
-                          <Clock className="w-3 h-3" />
-                          <span className="hidden sm:inline">Pendiente</span>
-                        </span>
+                        <div className="flex items-center justify-center gap-1">
+                          {p.cp.map((status, idx) => (
+                            <CheckpointDot key={idx} status={status} num={idx + 1} />
+                          ))}
+                        </div>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+            </div>
+            
+            {/* Legend */}
+            <div className="flex items-center justify-center gap-4 mt-4 pt-4 border-t border-[#262626]">
+              <div className="flex items-center gap-1 text-xs text-gray-500">
+                <div className="w-3 h-3 rounded-full bg-gray-600" /> Pendiente
+              </div>
+              <div className="flex items-center gap-1 text-xs text-gray-500">
+                <div className="w-3 h-3 rounded-full bg-green-500" /> Completado
+              </div>
+              <div className="flex items-center gap-1 text-xs text-gray-500">
+                <div className="w-3 h-3 rounded-full bg-red-500" /> Bloqueado
+              </div>
             </div>
           </div>
         </div>
@@ -305,6 +320,25 @@ function PendienteItem({ text, priority }: { text: string; priority: "high" | "m
         priority === "medium" ? "bg-orange-500" : "bg-gray-500"
       }`} />
       <span className="text-gray-300 text-sm md:text-base">{text}</span>
+    </div>
+  );
+}
+
+// Checkpoint Dot Component
+function CheckpointDot({ status, num }: { status: number; num: number }) {
+  // status: 0=pending, 1=done, 2=blocked
+  const colors = {
+    0: "bg-gray-600 hover:bg-gray-500",
+    1: "bg-green-500",
+    2: "bg-red-500",
+  };
+  
+  return (
+    <div 
+      className={`w-5 h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center text-[10px] font-medium transition-colors ${colors[status as keyof typeof colors] || colors[0]}`}
+      title={`CP${num}: ${status === 0 ? 'Pendiente' : status === 1 ? 'Completado' : 'Bloqueado'}`}
+    >
+      {num}
     </div>
   );
 }
