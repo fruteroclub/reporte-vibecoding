@@ -8,6 +8,8 @@ import {
 import {
   StatCard, SectionTitle, ArcoTabs
 } from "@/components/SharedComponents";
+import PendientesArco2 from "@/components/PendientesArco2";
+import CheckpointsArco2 from "@/components/CheckpointsArco2";
 
 export const metadata: Metadata = {
   title: "ARCO 2 - La Forja | VibeCoding Bootcamp",
@@ -134,32 +136,8 @@ export default function Arco2Page() {
         </div>
       </section>
 
-      {/* Checkpoints Section */}
-      <section className="py-12 md:py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <SectionTitle 
-            title="Sistema de Checkpoints" 
-            icon={<Target className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />}
-            subtitle="5 etapas para medir el progreso"
-          />
-          
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 mt-6 md:mt-8">
-            {checkpoints.map((cp) => (
-              <div 
-                key={cp.num}
-                className="bg-[#141414] border border-[#262626] rounded-xl p-4 text-center hover:border-orange-500/30 transition-colors"
-              >
-                <div className="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center mx-auto mb-3">
-                  <span className="text-orange-500 font-bold">{cp.num}</span>
-                </div>
-                <h3 className="text-white font-medium text-sm mb-1">{cp.name}</h3>
-                <p className="text-orange-500 text-xs mb-2">{cp.dia}</p>
-                <p className="text-gray-500 text-xs">{cp.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Checkpoints Section — Interactive */}
+      <CheckpointsArco2 />
 
       {/* Mentores Section */}
       <section className="py-12 md:py-16 px-4">
@@ -243,26 +221,8 @@ export default function Arco2Page() {
         </div>
       </section>
 
-      {/* Pendientes Section */}
-      <section className="py-12 md:py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <SectionTitle 
-            title="Pendientes" 
-            icon={<AlertCircle className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />}
-          />
-          
-          <div className="bg-[#141414] border border-[#262626] rounded-xl md:rounded-2xl p-4 md:p-8 mt-6 md:mt-8">
-            <div className="space-y-3">
-              <PendienteItem text="Check-ins con participantes - Verificar ideas y checkpoints" priority="high" />
-              <PendienteItem text="Registrar proyectos de cada participante" priority="high" />
-              <PendienteItem text="Confirmar 3 participantes asignados a Vale" priority="medium" />
-              <PendienteItem text="Tracking de checkpoints activo" priority="medium" />
-              <PendienteItem text="Pre-demo review (1 Mar)" priority="medium" />
-              <PendienteItem text="Demo Day — Lunes 2 Mar (YouTube Live)" priority="medium" />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Pendientes Section — Interactive */}
+      <PendientesArco2 />
 
       {/* Links Section */}
       <section className="py-12 md:py-16 px-4">
