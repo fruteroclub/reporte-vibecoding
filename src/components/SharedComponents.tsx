@@ -78,7 +78,9 @@ export function SectionTitleWithArrow({ title, icon, subtitle }: { title: string
 }
 
 // Funnel Step - Responsive
-export function FunnelStep({ number, label, percentage }: { number: string; label: string; percentage: string }) {
+// barWidth = proporción del número respecto al máximo (para el gráfico)
+// percentage = conversión respecto al paso anterior (para mostrar)
+export function FunnelStep({ number, label, percentage, barWidth }: { number: string; label: string; percentage: string; barWidth: string }) {
   return (
     <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
       <div className="flex items-center gap-2 md:w-20 md:justify-end">
@@ -89,7 +91,7 @@ export function FunnelStep({ number, label, percentage }: { number: string; labe
         <div className="h-6 md:h-8 bg-[#1a1a1a] rounded-full overflow-hidden">
           <div 
             className="h-full bg-orange-500 rounded-full"
-            style={{ width: percentage }}
+            style={{ width: barWidth }}
           />
         </div>
       </div>

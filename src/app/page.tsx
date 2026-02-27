@@ -145,11 +145,11 @@ export default function Home() {
           
           <div className="bg-[#141414] border border-[#262626] rounded-xl md:rounded-2xl p-4 md:p-8 mt-6 md:mt-8">
             <div className="space-y-4 md:space-y-6">
-              <FunnelStep number="651" label="Visitas web" percentage="100%" />
-              <FunnelStep number="263" label="Usuarios únicos" percentage="40.4%" />
-              <FunnelStep number="90" label="Inscripciones" percentage="34.2%" />
-              <FunnelStep number="43" label="Activos" percentage="47.8%" />
-              <FunnelStep number="23" label="Graduados" percentage="53.5%" />
+              <FunnelStep number="651" label="Visitas web" percentage="100%" barWidth="100%" />
+              <FunnelStep number="263" label="Usuarios únicos" percentage="40.4%" barWidth="40.4%" />
+              <FunnelStep number="90" label="Inscripciones" percentage="34.2%" barWidth="13.8%" />
+              <FunnelStep number="43" label="Activos" percentage="47.8%" barWidth="6.6%" />
+              <FunnelStep number="23" label="Graduados" percentage="53.5%" barWidth="3.5%" />
             </div>
           </div>
         </div>
