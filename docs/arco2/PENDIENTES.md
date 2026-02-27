@@ -6,7 +6,7 @@
 
 ## 🔴 Urgente (Esta semana)
 
-- [ ] **Definir fecha exacta Demo Day** — ¿Sigue siendo Lun 2 Mar?
+- [x] ~~Definir fecha exacta Demo Day~~ — ✅ Confirmado: Lunes 2 Mar, YouTube Live
 - [ ] **Check-ins con participantes** — Verificar Checkpoint 1 (Idea definida)
 - [ ] **Actualizar tracking** — Registrar proyectos de cada participante
 
@@ -61,9 +61,10 @@
 
 ## ❓ Preguntas Pendientes
 
-1. ¿Demo Day sigue siendo el 2 de marzo?
+1. ~~¿Demo Day sigue siendo el 2 de marzo?~~ ✅ Sí, confirmado
 2. ¿Hay algún participante que ya abandonó?
 3. ¿Los mentores ya hicieron primer contacto con sus asignados?
+4. ¿Los 3 participantes de Vale (@Alan_BK_Breck, @j4rias, @DanielRubio_Web3) están confirmados? Tuvieron 0% en la encuesta
 
 ---
 

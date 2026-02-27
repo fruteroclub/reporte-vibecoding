@@ -41,7 +41,7 @@ const calendario = [
   { dia: "Lun", fecha: "23 Feb", actividad: "🎬 Live Apertura", status: "completed" },
   { dia: "Mar-Sáb", fecha: "24-28 Feb", actividad: "🛠️ Building + Soporte 1:1", status: "active" },
   { dia: "Dom", fecha: "1 Mar", actividad: "🛠️ Building libre", status: "pending" },
-  { dia: "Lun", fecha: "2 Mar", actividad: "🎤 Demo Day", status: "pending" },
+  { dia: "Lun", fecha: "2 Mar", actividad: "🎤 Demo Day (YouTube Live)", status: "pending" },
 ];
 
 const checkpoints = [
@@ -72,6 +72,9 @@ export default function Arco2Page() {
             </h1>
             <p className="text-base md:text-xl text-gray-400 max-w-2xl mx-auto px-4">
               1 semana para lanzar TU producto con mentoría 1:1
+            </p>
+            <p className="text-sm text-orange-500/70 mt-2">
+              Meta: producto deployed + 10 usuarios reales
             </p>
           </div>
 
@@ -235,10 +238,12 @@ export default function Arco2Page() {
           
           <div className="bg-[#141414] border border-[#262626] rounded-xl md:rounded-2xl p-4 md:p-8 mt-6 md:mt-8">
             <div className="space-y-3">
-              <PendienteItem text="Definir fecha exacta Demo Day" priority="high" />
-              <PendienteItem text="Check-ins con participantes - Verificar Checkpoint 1" priority="high" />
-              <PendienteItem text="Registrar proyectos de cada participante" priority="medium" />
+              <PendienteItem text="Check-ins con participantes - Verificar ideas y checkpoints" priority="high" />
+              <PendienteItem text="Registrar proyectos de cada participante" priority="high" />
+              <PendienteItem text="Confirmar 3 participantes asignados a Vale" priority="medium" />
               <PendienteItem text="Tracking de checkpoints activo" priority="medium" />
+              <PendienteItem text="Pre-demo review (1 Mar)" priority="medium" />
+              <PendienteItem text="Demo Day — Lunes 2 Mar (YouTube Live)" priority="medium" />
             </div>
           </div>
         </div>

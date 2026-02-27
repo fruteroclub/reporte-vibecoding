@@ -12,11 +12,11 @@
 | Campo | Valor |
 |-------|-------|
 | **Formato** | Mentoría 1:1 personalizada |
-| **Participantes** | 12 confirmados |
+| **Participantes** | 10 confirmados (3 pendientes de Vale) |
 | **Mentores** | 4 (Brian, Mel, Vale, Scarf) |
 | **Sesiones grupales** | 0 (todo es 1:1) |
 | **Lives públicos** | 2 (Apertura + Demo Day) |
-| **Demo Day** | Pendiente definir |
+| **Demo Day** | Lunes 2 de marzo 2026 — YouTube Live |
 
 ---
 
@@ -30,9 +30,12 @@
 | 2 semanas | 1 semana intensiva |
 | Estudiante | **Builder** |
 
-### Requisito Obligatorio
+### Requisitos Obligatorios
 
-✅ Haber completado ARCO 1 con todos los entregables
+✅ Haber completado las 5 sesiones del ARCO 1
+✅ Tener todos los entregables entregados
+✅ **Tener una idea definida de qué quieres construir** (sin idea, no hay acceso)
+🎯 **Meta por participante:** Producto deployed + 10 usuarios reales que lo prueben
 
 ---
 
@@ -43,7 +46,7 @@
 | Lun | 23 Feb | 🎬 Live Apertura | ✅ Completado |
 | Mar-Sáb | 24-28 Feb | 🛠️ Building + Soporte 1:1 | 🔄 En progreso |
 | Dom | 1 Mar | 🛠️ Building libre | ⏳ Pendiente |
-| Lun | 2 Mar | 🎤 Demo Day | ⏳ Por definir |
+| Lun | 2 Mar | 🎤 Demo Day (YouTube Live) | ⏳ Confirmado |
 
 ### Live de Apertura
 
@@ -138,11 +141,12 @@ Brian — Decisiones complejas, arquitectura
 
 ## ⏳ Pendientes
 
-- [ ] Definir fecha exacta Demo Day
+- [x] ~~Definir fecha exacta Demo Day~~ → Lunes 2 Mar confirmado
 - [ ] Tracking de checkpoints por participante
 - [ ] Check-ins diarios
 - [ ] Pre-demo review (1 Mar)
-- [ ] Demo Day live
+- [ ] Demo Day live (2 Mar)
+- [ ] Confirmar los 3 participantes de Vale
 
 ---
 
