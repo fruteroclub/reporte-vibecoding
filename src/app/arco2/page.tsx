@@ -1,4 +1,6 @@
-import { Metadata } from "next";
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { 
   Flame, Users, Calendar, CheckCircle, Clock, 
@@ -9,14 +11,9 @@ import {
   StatCard, SectionTitle, ArcoTabs
 } from "@/components/SharedComponents";
 
-export const metadata: Metadata = {
-  title: "ARCO 2 - La Forja | VibeCoding Bootcamp",
-  description: "1 semana para lanzar TU producto - Mentoría 1:1",
-};
-
-// Participantes data con checkpoints
+// Participantes data inicial
 // cp = [cp1, cp2, cp3, cp4, cp5] donde: 0=pending, 1=done, 2=blocked
-const participantes = [
+const participantesInicial = [
   { handle: "@S4kurak", mentor: "Mel", proyecto: "TBD", cp: [0,0,0,0,0] },
   { handle: "@wairamoon", mentor: "Brian", proyecto: "TBD", cp: [0,0,0,0,0] },
   { handle: "@Whitehatcryptoedd", mentor: "Scarf", proyecto: "TBD", cp: [0,0,0,0,0] },
@@ -30,6 +27,8 @@ const participantes = [
   { handle: "@j4rias", mentor: "Vale", proyecto: "TBD", cp: [0,0,0,0,0] },
   { handle: "@DanielRubio_Web3", mentor: "Vale", proyecto: "TBD", cp: [0,0,0,0,0] },
 ];
+
+type Participante = typeof participantesInicial[0];
 
 const mentores = [
   { name: "Brian", participantes: 3, color: "text-orange-500" },
@@ -54,6 +53,45 @@ const checkpoints = [
 ];
 
 export default function Arco2Page() {
+  const [participantes, setParticipantes] = useState<Participante[]>(participantesInicial);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Cargar estado de localStorage al iniciar
+  useEffect(() => {
+    const saved = localStorage.getItem('arco2-checkpoints');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        setParticipantes(parsed);
+      } catch (e) {
+        console.error('Error loading saved state');
+      }
+    }
+    setIsLoaded(true);
+  }, []);
+
+  // Guardar en localStorage cuando cambian los checkpoints
+  useEffect(() => {
+    if (isLoaded) {
+      localStorage.setItem('arco2-checkpoints', JSON.stringify(participantes));
+    }
+  }, [participantes, isLoaded]);
+
+  // Función para cambiar estado de checkpoint
+  const toggleCheckpoint = (participanteIdx: number, cpIdx: number) => {
+    setParticipantes(prev => {
+      const updated = [...prev];
+      const currentStatus = updated[participanteIdx].cp[cpIdx];
+      // Ciclo: 0 (pending) → 1 (done) → 2 (blocked) → 0
+      const newStatus = (currentStatus + 1) % 3;
+      updated[participanteIdx] = {
+        ...updated[participanteIdx],
+        cp: updated[participanteIdx].cp.map((s, i) => i === cpIdx ? newStatus : s)
+      };
+      return updated;
+    });
+  };
+
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -217,7 +255,12 @@ export default function Arco2Page() {
                       <td className="text-center py-3 px-2">
                         <div className="flex items-center justify-center gap-1">
                           {p.cp.map((status, idx) => (
-                            <CheckpointDot key={idx} status={status} num={idx + 1} />
+                            <CheckpointDot 
+                              key={idx} 
+                              status={status} 
+                              num={idx + 1} 
+                              onClick={() => toggleCheckpoint(i, idx)}
+                            />
                           ))}
                         </div>
                       </td>
@@ -227,17 +270,25 @@ export default function Arco2Page() {
               </table>
             </div>
             
-            {/* Legend */}
-            <div className="flex items-center justify-center gap-4 mt-4 pt-4 border-t border-[#262626]">
-              <div className="flex items-center gap-1 text-xs text-gray-500">
-                <div className="w-3 h-3 rounded-full bg-gray-600" /> Pendiente
+            {/* Legend + Instructions */}
+            <div className="mt-4 pt-4 border-t border-[#262626]">
+              <p className="text-center text-orange-500 text-sm font-medium mb-3">
+                👆 Click en los números para cambiar estado
+              </p>
+              <div className="flex items-center justify-center gap-4">
+                <div className="flex items-center gap-1 text-xs text-gray-500">
+                  <div className="w-3 h-3 rounded-full bg-gray-600" /> Pendiente
+                </div>
+                <div className="flex items-center gap-1 text-xs text-gray-500">
+                  <div className="w-3 h-3 rounded-full bg-green-500" /> Completado
+                </div>
+                <div className="flex items-center gap-1 text-xs text-gray-500">
+                  <div className="w-3 h-3 rounded-full bg-red-500" /> Bloqueado
+                </div>
               </div>
-              <div className="flex items-center gap-1 text-xs text-gray-500">
-                <div className="w-3 h-3 rounded-full bg-green-500" /> Completado
-              </div>
-              <div className="flex items-center gap-1 text-xs text-gray-500">
-                <div className="w-3 h-3 rounded-full bg-red-500" /> Bloqueado
-              </div>
+              <p className="text-center text-gray-600 text-xs mt-2">
+                Los cambios se guardan automáticamente en tu navegador
+              </p>
             </div>
           </div>
         </div>
@@ -324,21 +375,24 @@ function PendienteItem({ text, priority }: { text: string; priority: "high" | "m
   );
 }
 
-// Checkpoint Dot Component
-function CheckpointDot({ status, num }: { status: number; num: number }) {
+// Checkpoint Dot Component - CLICKEABLE
+function CheckpointDot({ status, num, onClick }: { status: number; num: number; onClick: () => void }) {
   // status: 0=pending, 1=done, 2=blocked
   const colors = {
-    0: "bg-gray-600 hover:bg-gray-500",
-    1: "bg-green-500",
-    2: "bg-red-500",
+    0: "bg-gray-600 hover:bg-gray-400",
+    1: "bg-green-500 hover:bg-green-400",
+    2: "bg-red-500 hover:bg-red-400",
   };
   
+  const statusText = status === 0 ? 'Pendiente' : status === 1 ? 'Completado' : 'Bloqueado';
+  
   return (
-    <div 
-      className={`w-5 h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center text-[10px] font-medium transition-colors ${colors[status as keyof typeof colors] || colors[0]}`}
-      title={`CP${num}: ${status === 0 ? 'Pendiente' : status === 1 ? 'Completado' : 'Bloqueado'}`}
+    <button 
+      onClick={onClick}
+      className={`w-6 h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center text-[10px] md:text-xs font-bold transition-all cursor-pointer hover:scale-110 active:scale-95 ${colors[status as keyof typeof colors] || colors[0]} text-white shadow-lg`}
+      title={`CP${num}: ${statusText} (click para cambiar)`}
     >
       {num}
-    </div>
+    </button>
   );
 }
