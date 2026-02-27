@@ -5,7 +5,8 @@ import Link from "next/link";
 import { 
   Flame, Users, Calendar, CheckCircle, Clock, 
   Target, BarChart3, Youtube, MessageCircle,
-  User, Trophy, AlertCircle
+  User, Trophy, AlertCircle, ChevronDown, ChevronUp,
+  Github, ExternalLink, FileText
 } from "lucide-react";
 import {
   StatCard, SectionTitle, ArcoTabs
@@ -15,18 +16,18 @@ import PendientesArco2 from "@/components/PendientesArco2";
 // Participantes data inicial
 // cp = [cp1, cp2, cp3, cp4, cp5] donde: 0=pending, 1=done, 2=blocked
 const participantesInicial = [
-  { handle: "@S4kurak", mentor: "Mel", proyecto: "TBD", cp: [0,0,0,0,0] },
-  { handle: "@wairamoon", mentor: "Brian", proyecto: "TBD", cp: [0,0,0,0,0] },
-  { handle: "@Whitehatcryptoedd", mentor: "Scarf", proyecto: "TBD", cp: [0,0,0,0,0] },
-  { handle: "@LokiyIsaac", mentor: "Mel", proyecto: "TBD", cp: [0,0,0,0,0] },
-  { handle: "@sergiotechx", mentor: "Mel", proyecto: "TBD", cp: [0,0,0,0,0] },
-  { handle: "@esdras_josue", mentor: "Brian", proyecto: "TBD", cp: [0,0,0,0,0] },
-  { handle: "@BBPMW", mentor: "Scarf", proyecto: "TBD", cp: [0,0,0,0,0] },
-  { handle: "@ToryDom", mentor: "Brian", proyecto: "TBD", cp: [0,0,0,0,0] },
-  { handle: "@eeelien39", mentor: "Scarf", proyecto: "TBD", cp: [0,0,0,0,0] },
-  { handle: "@Alan_BK_Breck", mentor: "Vale", proyecto: "TBD", cp: [0,0,0,0,0] },
-  { handle: "@j4rias", mentor: "Vale", proyecto: "TBD", cp: [0,0,0,0,0] },
-  { handle: "@DanielRubio_Web3", mentor: "Vale", proyecto: "TBD", cp: [0,0,0,0,0] },
+  { handle: "@S4kurak", mentor: "Mel", proyecto: "TBD", cp: [0,0,0,0,0], github: "", vercel: "", notas: "" },
+  { handle: "@wairamoon", mentor: "Brian", proyecto: "TBD", cp: [0,0,0,0,0], github: "", vercel: "", notas: "" },
+  { handle: "@Whitehatcryptoedd", mentor: "Scarf", proyecto: "TBD", cp: [0,0,0,0,0], github: "", vercel: "", notas: "" },
+  { handle: "@LokiyIsaac", mentor: "Mel", proyecto: "TBD", cp: [0,0,0,0,0], github: "", vercel: "", notas: "" },
+  { handle: "@sergiotechx", mentor: "Mel", proyecto: "TBD", cp: [0,0,0,0,0], github: "", vercel: "", notas: "" },
+  { handle: "@esdras_josue", mentor: "Brian", proyecto: "TBD", cp: [0,0,0,0,0], github: "", vercel: "", notas: "" },
+  { handle: "@BBPMW", mentor: "Scarf", proyecto: "TBD", cp: [0,0,0,0,0], github: "", vercel: "", notas: "" },
+  { handle: "@ToryDom", mentor: "Brian", proyecto: "TBD", cp: [0,0,0,0,0], github: "", vercel: "", notas: "" },
+  { handle: "@eeelien39", mentor: "Scarf", proyecto: "TBD", cp: [0,0,0,0,0], github: "", vercel: "", notas: "" },
+  { handle: "@Alan_BK_Breck", mentor: "Vale", proyecto: "TBD", cp: [0,0,0,0,0], github: "", vercel: "", notas: "" },
+  { handle: "@j4rias", mentor: "Vale", proyecto: "TBD", cp: [0,0,0,0,0], github: "", vercel: "", notas: "" },
+  { handle: "@DanielRubio_Web3", mentor: "Vale", proyecto: "TBD", cp: [0,0,0,0,0], github: "", vercel: "", notas: "" },
 ];
 
 type Participante = typeof participantesInicial[0];
@@ -162,6 +163,7 @@ export default function Arco2Page() {
   const [participantes, setParticipantes] = useState<Participante[]>(participantesInicial);
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectedCheckpoint, setSelectedCheckpoint] = useState<number | null>(null);
+  const [expandedParticipant, setExpandedParticipant] = useState<number | null>(null);
 
   // Cargar estado de localStorage al iniciar
   useEffect(() => {
@@ -195,6 +197,15 @@ export default function Arco2Page() {
         ...updated[participanteIdx],
         cp: updated[participanteIdx].cp.map((s, i) => i === cpIdx ? newStatus : s)
       };
+      return updated;
+    });
+  };
+
+  // Función para actualizar campo de participante
+  const updateParticipante = (idx: number, field: keyof Participante, value: string) => {
+    setParticipantes(prev => {
+      const updated = [...prev];
+      updated[idx] = { ...updated[idx], [field]: value };
       return updated;
     });
   };
@@ -343,34 +354,111 @@ export default function Arco2Page() {
         </div>
       </section>
 
-      {/* Participantes Section */}
+      {/* Participantes Section - EXPANDIBLE */}
       <section className="py-12 md:py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <SectionTitle 
             title="Participantes" 
             icon={<Users className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />}
-            subtitle="12 builders confirmados"
+            subtitle="12 builders — Click en fila para expandir detalles"
           />
           
-          <div className="bg-[#141414] border border-[#262626] rounded-xl md:rounded-2xl p-4 md:p-8 mt-6 md:mt-8">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-[#262626]">
-                    <th className="text-left text-gray-400 text-xs md:text-sm font-medium py-3 px-2">Participante</th>
-                    <th className="text-left text-gray-400 text-xs md:text-sm font-medium py-3 px-2">Mentor</th>
-                    <th className="text-left text-gray-400 text-xs md:text-sm font-medium py-3 px-2 hidden sm:table-cell">Proyecto</th>
-                    <th className="text-center text-gray-400 text-xs md:text-sm font-medium py-3 px-2">Checkpoints</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {participantes.map((p, i) => (
-                    <tr key={i} className="border-b border-[#262626] last:border-0">
-                      <td className="text-orange-500 text-sm md:text-base py-3 px-2">{p.handle}</td>
-                      <td className="text-gray-300 text-sm md:text-base py-3 px-2">{p.mentor}</td>
-                      <td className="text-gray-500 text-sm md:text-base py-3 px-2 hidden sm:table-cell">{p.proyecto}</td>
-                      <td className="text-center py-3 px-2">
-                        <div className="flex items-center justify-center gap-1">
+          <div className="bg-[#141414] border border-[#262626] rounded-xl md:rounded-2xl p-4 md:p-6 mt-6 md:mt-8">
+            <div className="space-y-2">
+              {participantes.map((p, i) => (
+                <div key={i} className="border border-[#262626] rounded-lg overflow-hidden">
+                  {/* Fila principal - clickeable */}
+                  <button
+                    onClick={() => setExpandedParticipant(expandedParticipant === i ? null : i)}
+                    className="w-full flex items-center justify-between p-3 md:p-4 hover:bg-[#1a1a1a] transition-colors text-left"
+                  >
+                    <div className="flex items-center gap-4 flex-1">
+                      <span className="text-orange-500 font-medium text-sm md:text-base min-w-[140px]">{p.handle}</span>
+                      <span className="text-gray-400 text-sm hidden sm:block">{p.mentor}</span>
+                      <span className="text-gray-500 text-sm hidden md:block truncate max-w-[150px]">{p.proyecto}</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-1">
+                        {p.cp.map((status, idx) => (
+                          <div
+                            key={idx}
+                            className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                              status === 0 ? "bg-gray-600" : status === 1 ? "bg-green-500" : "bg-red-500"
+                            } text-white`}
+                          >
+                            {idx + 1}
+                          </div>
+                        ))}
+                      </div>
+                      {expandedParticipant === i ? (
+                        <ChevronUp className="w-5 h-5 text-orange-500" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5 text-gray-500" />
+                      )}
+                    </div>
+                  </button>
+
+                  {/* Panel expandido */}
+                  {expandedParticipant === i && (
+                    <div className="p-4 md:p-6 bg-[#0a0a0a] border-t border-[#262626] space-y-4">
+                      {/* Proyecto */}
+                      <div>
+                        <label className="text-gray-400 text-xs mb-1 block">Proyecto</label>
+                        <input
+                          type="text"
+                          value={p.proyecto}
+                          onChange={(e) => updateParticipante(i, 'proyecto', e.target.value)}
+                          placeholder="Nombre del proyecto..."
+                          className="w-full bg-[#141414] border border-[#262626] rounded-lg px-3 py-2 text-white text-sm focus:border-orange-500 outline-none"
+                        />
+                      </div>
+
+                      {/* GitHub + Vercel */}
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-gray-400 text-xs mb-1 flex items-center gap-1">
+                            <Github className="w-3 h-3" /> GitHub
+                          </label>
+                          <input
+                            type="url"
+                            value={p.github}
+                            onChange={(e) => updateParticipante(i, 'github', e.target.value)}
+                            placeholder="https://github.com/..."
+                            className="w-full bg-[#141414] border border-[#262626] rounded-lg px-3 py-2 text-white text-sm focus:border-orange-500 outline-none"
+                          />
+                        </div>
+                        <div>
+                          <label className="text-gray-400 text-xs mb-1 flex items-center gap-1">
+                            <ExternalLink className="w-3 h-3" /> Vercel URL
+                          </label>
+                          <input
+                            type="url"
+                            value={p.vercel}
+                            onChange={(e) => updateParticipante(i, 'vercel', e.target.value)}
+                            placeholder="https://proyecto.vercel.app"
+                            className="w-full bg-[#141414] border border-[#262626] rounded-lg px-3 py-2 text-white text-sm focus:border-orange-500 outline-none"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Notas */}
+                      <div>
+                        <label className="text-gray-400 text-xs mb-1 flex items-center gap-1">
+                          <FileText className="w-3 h-3" /> Notas del mentor
+                        </label>
+                        <textarea
+                          value={p.notas}
+                          onChange={(e) => updateParticipante(i, 'notas', e.target.value)}
+                          placeholder="Notas privadas sobre el progreso..."
+                          rows={2}
+                          className="w-full bg-[#141414] border border-[#262626] rounded-lg px-3 py-2 text-white text-sm focus:border-orange-500 outline-none resize-none"
+                        />
+                      </div>
+
+                      {/* Checkpoints clickeables */}
+                      <div>
+                        <label className="text-gray-400 text-xs mb-2 block">Checkpoints (click para cambiar)</label>
+                        <div className="flex items-center gap-2">
                           {p.cp.map((status, idx) => (
                             <CheckpointDot 
                               key={idx} 
@@ -380,19 +468,42 @@ export default function Arco2Page() {
                             />
                           ))}
                         </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                      </div>
+
+                      {/* Links rápidos */}
+                      {(p.github || p.vercel) && (
+                        <div className="flex gap-2 pt-2 border-t border-[#262626]">
+                          {p.github && (
+                            <a 
+                              href={p.github} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 px-3 py-1 bg-[#141414] rounded-lg text-xs text-gray-300 hover:text-white"
+                            >
+                              <Github className="w-3 h-3" /> Ver repo
+                            </a>
+                          )}
+                          {p.vercel && (
+                            <a 
+                              href={p.vercel} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 px-3 py-1 bg-orange-500/10 rounded-lg text-xs text-orange-400 hover:text-orange-300"
+                            >
+                              <ExternalLink className="w-3 h-3" /> Ver deploy
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
             
-            {/* Legend + Instructions */}
+            {/* Legend */}
             <div className="mt-4 pt-4 border-t border-[#262626]">
-              <p className="text-center text-orange-500 text-sm font-medium mb-3">
-                👆 Click en los números para cambiar estado
-              </p>
-              <div className="flex items-center justify-center gap-4">
+              <div className="flex items-center justify-center gap-4 flex-wrap">
                 <div className="flex items-center gap-1 text-xs text-gray-500">
                   <div className="w-3 h-3 rounded-full bg-gray-600" /> Pendiente
                 </div>
