@@ -45,16 +45,122 @@ const calendario = [
 ];
 
 const checkpoints = [
-  { num: 1, name: "Idea Definida", dia: "Lun 23", desc: "Claridad del proyecto" },
-  { num: 2, name: "Setup Técnico", dia: "Mar 24", desc: "Repo + proyecto corriendo" },
-  { num: 3, name: "MVP Funcional", dia: "Jue 26", desc: "Feature principal funciona" },
-  { num: 4, name: "Deploy Listo", dia: "Sáb 28", desc: "URL pública accesible" },
-  { num: 5, name: "Demo Ready", dia: "Dom 1", desc: "Pitch + demo ensayado" },
+  { 
+    num: 1, 
+    name: "Idea Definida", 
+    dia: "Lun 23", 
+    desc: "Claridad del proyecto",
+    detalle: {
+      objetivo: "Verificar claridad del proyecto",
+      criterios: [
+        "Puede explicar su idea en 1 frase",
+        "Sabe qué problema resuelve",
+        "Tiene usuario target identificado",
+        "Scope realista para 1 semana"
+      ],
+      preguntas: [
+        "¿Qué vas a construir? (1 frase)",
+        "¿Para quién es?",
+        "¿Qué problema resuelve?",
+        "¿Qué es lo MÍNIMO que debe hacer para el Demo Day?"
+      ],
+      evidencia: "Respuestas claras a las 4 preguntas"
+    }
+  },
+  { 
+    num: 2, 
+    name: "Setup Técnico", 
+    dia: "Mar 24", 
+    desc: "Repo + proyecto corriendo",
+    detalle: {
+      objetivo: "Capacidad de arrancar",
+      criterios: [
+        "Repo creado (GitHub/GitLab)",
+        "Proyecto inicializado y corre local",
+        "Stack definido claramente",
+        "Primera página/componente existe"
+      ],
+      preguntas: [
+        "¿Cuál es el link de tu repo?",
+        "¿El proyecto corre sin errores?",
+        "¿Qué tecnologías estás usando?",
+        "¿Tienes la primera pantalla?"
+      ],
+      evidencia: "Link al repo + Screenshot corriendo local"
+    }
+  },
+  { 
+    num: 3, 
+    name: "MVP Funcional", 
+    dia: "Jue 26", 
+    desc: "Feature principal funciona",
+    detalle: {
+      objetivo: "Progreso real de código",
+      criterios: [
+        "Feature principal existe y funciona",
+        "Datos persisten (DB/localStorage)",
+        "Se puede usar el flow completo",
+        "Sin errores críticos"
+      ],
+      preguntas: [
+        "¿Cuál es tu feature principal?",
+        "¿Los datos se guardan?",
+        "¿Puedo usarlo de inicio a fin?",
+        "¿Qué falta para estar listo?"
+      ],
+      evidencia: "Demo en video o pantalla compartida (2 min)"
+    }
+  },
+  { 
+    num: 4, 
+    name: "Deploy Listo", 
+    dia: "Sáb 28", 
+    desc: "URL pública accesible",
+    detalle: {
+      objetivo: "Producto accesible públicamente",
+      criterios: [
+        "Deployed en internet (URL funciona)",
+        "Sin errores en producción",
+        "Accesible sin setup especial",
+        "Link compartible listo"
+      ],
+      preguntas: [
+        "¿Cuál es tu URL de producción?",
+        "¿Funciona sin errores?",
+        "¿Cualquiera puede usarlo?",
+        "¿El link es público?"
+      ],
+      evidencia: "URL deployed + Screenshot funcionando en producción"
+    }
+  },
+  { 
+    num: 5, 
+    name: "Demo Ready", 
+    dia: "Dom 1", 
+    desc: "Pitch + demo ensayado",
+    detalle: {
+      objetivo: "Preparación para presentar",
+      criterios: [
+        "Pitch preparado (sabe qué decir)",
+        "Demo ensayado y fluido",
+        "Tiempo controlado (~5 min)",
+        "Producto estable (no crashea)"
+      ],
+      preguntas: [
+        "¿Puedes explicar qué construiste en 30 seg?",
+        "¿El demo funciona sin sorpresas?",
+        "¿Qué aprendiste? (1-2 puntos)",
+        "¿Qué sigue después del Demo Day?"
+      ],
+      evidencia: "Ensayo del pitch completo"
+    }
+  },
 ];
 
 export default function Arco2Page() {
   const [participantes, setParticipantes] = useState<Participante[]>(participantesInicial);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [selectedCheckpoint, setSelectedCheckpoint] = useState<number | null>(null);
 
   // Cargar estado de localStorage al iniciar
   useEffect(() => {
@@ -178,14 +284,15 @@ export default function Arco2Page() {
           <SectionTitle 
             title="Sistema de Checkpoints" 
             icon={<Target className="w-5 h-5 md:w-6 md:h-6 text-orange-500" />}
-            subtitle="5 etapas para medir el progreso"
+            subtitle="5 etapas para medir el progreso — Click para ver detalles"
           />
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 mt-6 md:mt-8">
             {checkpoints.map((cp) => (
-              <div 
+              <button 
                 key={cp.num}
-                className="bg-[#141414] border border-[#262626] rounded-xl p-4 text-center hover:border-orange-500/30 transition-colors"
+                onClick={() => setSelectedCheckpoint(cp.num)}
+                className="bg-[#141414] border border-[#262626] rounded-xl p-4 text-center hover:border-orange-500/50 hover:bg-[#1a1a1a] transition-all cursor-pointer hover:scale-105 active:scale-95"
               >
                 <div className="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center mx-auto mb-3">
                   <span className="text-orange-500 font-bold">{cp.num}</span>
@@ -193,11 +300,20 @@ export default function Arco2Page() {
                 <h3 className="text-white font-medium text-sm mb-1">{cp.name}</h3>
                 <p className="text-orange-500 text-xs mb-2">{cp.dia}</p>
                 <p className="text-gray-500 text-xs">{cp.desc}</p>
-              </div>
+                <p className="text-orange-500/50 text-[10px] mt-2">👆 Click para detalles</p>
+              </button>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Checkpoint Modal */}
+      {selectedCheckpoint !== null && (
+        <CheckpointModal 
+          checkpoint={checkpoints[selectedCheckpoint - 1]} 
+          onClose={() => setSelectedCheckpoint(null)} 
+        />
+      )}
 
       {/* Mentores Section */}
       <section className="py-12 md:py-16 px-4">
@@ -394,5 +510,122 @@ function CheckpointDot({ status, num, onClick }: { status: number; num: number; 
     >
       {num}
     </button>
+  );
+}
+
+// Checkpoint Modal Component
+function CheckpointModal({ checkpoint, onClose }: { 
+  checkpoint: typeof checkpoints[0]; 
+  onClose: () => void;
+}) {
+  return (
+    <div 
+      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      <div 
+        className="bg-[#141414] border border-[#262626] rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="p-6 border-b border-[#262626] flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center">
+              <span className="text-orange-500 font-bold text-xl">{checkpoint.num}</span>
+            </div>
+            <div>
+              <h2 className="text-white font-bold text-xl">{checkpoint.name}</h2>
+              <p className="text-orange-500 text-sm">{checkpoint.dia}</p>
+            </div>
+          </div>
+          <button 
+            onClick={onClose}
+            className="text-gray-500 hover:text-white transition-colors text-2xl"
+          >
+            ×
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="p-6 space-y-6">
+          {/* Objetivo */}
+          <div>
+            <h3 className="text-orange-500 font-semibold mb-2 flex items-center gap-2">
+              <Target className="w-4 h-4" /> Objetivo
+            </h3>
+            <p className="text-gray-300">{checkpoint.detalle.objetivo}</p>
+          </div>
+
+          {/* Criterios */}
+          <div>
+            <h3 className="text-orange-500 font-semibold mb-3 flex items-center gap-2">
+              <CheckCircle className="w-4 h-4" /> Criterios de Cumplimiento
+            </h3>
+            <div className="space-y-2">
+              {checkpoint.detalle.criterios.map((criterio, i) => (
+                <div key={i} className="flex items-start gap-2 bg-[#1a1a1a] p-3 rounded-lg">
+                  <span className="text-green-500 mt-0.5">✓</span>
+                  <span className="text-gray-300 text-sm">{criterio}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Preguntas */}
+          <div>
+            <h3 className="text-orange-500 font-semibold mb-3 flex items-center gap-2">
+              <MessageCircle className="w-4 h-4" /> Preguntas de Verificación
+            </h3>
+            <div className="space-y-2">
+              {checkpoint.detalle.preguntas.map((pregunta, i) => (
+                <div key={i} className="flex items-start gap-2 bg-[#1a1a1a] p-3 rounded-lg">
+                  <span className="text-orange-500 font-bold">{i + 1}.</span>
+                  <span className="text-gray-300 text-sm">{pregunta}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Evidencia */}
+          <div>
+            <h3 className="text-orange-500 font-semibold mb-2 flex items-center gap-2">
+              <BarChart3 className="w-4 h-4" /> Evidencia Requerida
+            </h3>
+            <div className="bg-orange-500/10 border border-orange-500/30 p-4 rounded-lg">
+              <p className="text-orange-300 text-sm">{checkpoint.detalle.evidencia}</p>
+            </div>
+          </div>
+
+          {/* Estados */}
+          <div>
+            <h3 className="text-orange-500 font-semibold mb-3">Estados Posibles</h3>
+            <div className="flex gap-3 flex-wrap">
+              <div className="flex items-center gap-2 bg-green-500/10 px-3 py-2 rounded-lg">
+                <div className="w-3 h-3 rounded-full bg-green-500" />
+                <span className="text-green-400 text-sm">Aprobado</span>
+              </div>
+              <div className="flex items-center gap-2 bg-yellow-500/10 px-3 py-2 rounded-lg">
+                <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                <span className="text-yellow-400 text-sm">Necesita refinamiento</span>
+              </div>
+              <div className="flex items-center gap-2 bg-red-500/10 px-3 py-2 rounded-lg">
+                <div className="w-3 h-3 rounded-full bg-red-500" />
+                <span className="text-red-400 text-sm">Sin definir/Bloqueado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="p-6 border-t border-[#262626]">
+          <button 
+            onClick={onClose}
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-colors"
+          >
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
